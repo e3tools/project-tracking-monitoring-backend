@@ -4,3 +4,6 @@
 
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
+project_monitor.patches.v1.0.initialize_project_team_role
+project_monitor.patches.v1.0.initialize_task_type
+project_monitor.patches.v1.0.initialize_task_status

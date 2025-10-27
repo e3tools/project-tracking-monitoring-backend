@@ -1,0 +1,46 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-05 05:37:25.116325",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "admin_level",
+  "admin"
+ ],
+ "fields": [
+  {
+   "fieldname": "admin_level",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Admin Level",
+   "link_filters": "[[\"DocType\",\"name\",\"in\",[\"Admin 0\",\"Admin 1\",\"Admin 2\"]]]",
+   "options": "DocType",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "admin",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Admin",
+   "options": "admin_level",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-09-05 05:37:25.116325",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Location Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

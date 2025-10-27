@@ -1,0 +1,1034 @@
+{% extends 'templates/project_base.html' %} {% block content %}
+<div class="container">
+  <!-- BEGIN SLIDER -->
+  <div class="col-md-6">
+    <div class="page-slider margin-bottom-40">
+      <div id="carousel-example-generic" class="carousel slide carousel-slider">
+        <!-- Indicators -->
+        <ol class="carousel-indicators carousel-indicators-frontend">
+          <li
+            data-target="#carousel-example-generic"
+            data-slide-to="0"
+            class="active"
+          ></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <!-- First slide -->
+          <div class="item carousel-item-eight active">
+            <div class="container">
+              <div class="carousel-position-six text-uppercase text-center">
+                <h2
+                  class="margin-bottom-20 animate-delay carousel-title-v5"
+                  data-animation="animated fadeInDown"
+                >
+                  Explore the power <br />
+                  <span class="carousel-title-normal">of Metronic</span>
+                </h2>
+                <p
+                  class="carousel-subtitle-v5 border-top-bottom margin-bottom-30"
+                  data-animation="animated fadeInDown"
+                >
+                  This is what you were looking for
+                </p>
+                <a
+                  class="carousel-btn-green"
+                  href="#"
+                  data-animation="animated fadeInUp"
+                  >Purchase Now!</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Second slide -->
+          <div class="item carousel-item-nine">
+            <div class="container">
+              <div class="carousel-position-six">
+                <h2
+                  class="animate-delay carousel-title-v6 text-uppercase"
+                  data-animation="animated fadeInDown"
+                >
+                  Need a website design?
+                </h2>
+                <p
+                  class="carousel-subtitle-v6 text-uppercase"
+                  data-animation="animated fadeInDown"
+                >
+                  This is what you were looking for
+                </p>
+                <p
+                  class="carousel-subtitle-v7 margin-bottom-30"
+                  data-animation="animated fadeInDown"
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
+                  Sed est nunc, sagittis at consectetur id.
+                </p>
+                <a
+                  class="carousel-btn-green"
+                  href="#"
+                  data-animation="animated fadeInUp"
+                  >Purchase Now!</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Third slide -->
+          <div class="item carousel-item-ten">
+            <div class="container">
+              <div class="carousel-position-six">
+                <h2
+                  class="animate-delay carousel-title-v6 text-uppercase"
+                  data-animation="animated fadeInDown"
+                >
+                  Powerful &amp; Clean
+                </h2>
+                <p
+                  class="carousel-subtitle-v6 text-uppercase"
+                  data-animation="animated fadeInDown"
+                >
+                  Responsive Website &amp; Admin Theme
+                </p>
+                <p
+                  class="carousel-subtitle-v7 margin-bottom-30"
+                  data-animation="animated fadeInDown"
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
+                  Sed est nunc, sagittis at consectetur id.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <a
+          class="left carousel-control carousel-control-shop carousel-control-frontend"
+          href="#carousel-example-generic"
+          role="button"
+          data-slide="prev"
+        >
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        <a
+          class="right carousel-control carousel-control-shop carousel-control-frontend"
+          href="#carousel-example-generic"
+          role="button"
+          data-slide="next"
+        >
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="col-md-12 testimonials-v1">
+      <div id="myCarousel" class="carousel slide">
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          {% for i, entry in enumerate(feedback) %}
+          <div class="{{'active' if i ==0 else '' }} item">
+            <blockquote>
+              <p>{{ entry.description }}</p>
+            </blockquote>
+            <div class="carousel-info">
+              <img
+                class="pull-left"
+                src="/assets/project_monitor/dashboard/assets/pages/img/unknown_person.jpg"
+                alt=""
+              />
+              <div class="pull-left">
+                <span class="testimonials-name">{{ entry.subject }}</span>
+                <span class="testimonials-post"
+                  >{{ frappe.format_value(entry.creation, "Date") }}</span
+                >
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Carousel nav -->
+        <a class="left-btn" href="#myCarousel" data-slide="prev"></a>
+        <a class="right-btn" href="#myCarousel" data-slide="next"></a>
+      </div>
+    </div>
+    <!-- END TESTIMONIALS -->
+  </div>
+  <!-- END SLIDER -->
+
+  <!-- BEGIN PROJECT STATUS -->
+  <div class="col-md-">
+    <div class="row margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <!-- <h1 class="text-center">Project Stats</h1> -->
+        <!-- BEGIN TABS AND TESTIMONIALS -->
+        <div class="row mix-block margin-bottom-40">
+          <!-- PROJECT STATUS TABS -->
+          <div class="col-md-12 tab-style-1">
+            <ul class="nav nav-tabs">
+              {% for i, st in enumerate(status) %}
+              <li class="{{ 'active' if i == 0 else '' }}">
+                <a href="#tab-1" data-toggle="tab"> {{ st.name }} </a>
+              </li>
+              {% endfor %}
+              <!-- 
+                  <li class="active">
+                    <a href="#tab-1" data-toggle="tab">
+                      {{ content["Completed Status Title"]["content"] }}
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#tab-2" data-toggle="tab"
+                      >{{ content["Ongoing Status Title"]["content"] }}</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#tab-3" data-toggle="tab"
+                      >{{ content["Stalled Status Title"]["content"] }}</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#tab-4" data-toggle="tab"
+                      >{{ content["Under Procurement Status Title"]["content"]
+                      }}</a
+                    >
+                  </li> -->
+            </ul>
+            <div class="tab-content">
+              {% for i, st in enumerate(status) %}
+              <div
+                class="tab-pane row fade in {{ 'active' if i == 0 else '' }}"
+                id="tab-1"
+              >
+                <div class="col-md-9 col-sm-9">
+                  <p>{{ st.description }}</p>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                  <a
+                    href="/assets/project_monitor/dashboard/assets/temp/photos/img7.jpg"
+                    class="fancybox-button"
+                    title="Image Title"
+                    data-rel="fancybox-button"
+                  >
+                    <img
+                      class="img-responsive"
+                      src="/assets/project_monitor/dashboard/assets/pages/img/photos/img7.jpg"
+                      alt=""
+                    />
+                  </a>
+                </div>
+                <!-- <div class="col-md-9 col-sm-9">
+                          <p class="margin-bottom-10">
+                            {{ content["Completed Status Content"]["content"] }}
+                          </p>
+                          <p>
+                            <a class="more" href="javascript:;"
+                              >Read more <i class="icon-angle-right"></i
+                            ></a>
+                          </p>
+                        </div> -->
+              </div>
+              {% endfor %}
+
+              <!-- <div class="tab-pane row fade in active" id="tab-1">
+                    <div class="col-md-9 col-sm-9">
+                      <p>{{ content["Ongoing Status Content"]["content"] }}</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                      <a
+                        href="/assets/project_monitor/dashboard/assets/temp/photos/img7.jpg"
+                        class="fancybox-button"
+                        title="Image Title"
+                        data-rel="fancybox-button"
+                      >
+                        <img
+                          class="img-responsive"
+                          src="/assets/project_monitor/dashboard/assets/pages/img/photos/img7.jpg"
+                          alt=""
+                        />
+                      </a>
+                    </div> 
+                  </div>
+                  <div class="tab-pane row fade" id="tab-2">
+                    <div class="col-md-9 col-sm-9">
+                      <p>{{ content["Ongoing Status Content"]["content"] }}</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                      <a
+                        href="/assets/project_monitor/dashboard/assets/temp/photos/img10.jpg"
+                        class="fancybox-button"
+                        title="Image Title"
+                        data-rel="fancybox-button"
+                      >
+                        <img
+                          class="img-responsive"
+                          src="/assets/project_monitor/dashboard/assets/pages/img/photos/img10.jpg"
+                          alt=""
+                        />
+                      </a>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="tab-3">
+                    <p>{{ content["Stalled Status Content"]["content"] }}</p>
+                  </div>
+                  <div class="tab-pane fade" id="tab-4">
+                    <p>
+                      {{ content["Under Procurement Status Content"]["content"]
+                      }}
+                    </p>
+                  </div> -->
+            </div>
+          </div>
+          <!-- END PROJECT STATUS TABS -->
+        </div>
+        <!-- END TABS AND TESTIMONIALS -->
+
+        <div class="content-page">
+          <div class="row margin-bottom-40">
+            <!-- Project Status Costs -->
+            {% for status in status_costs %}
+            <div class="col-md-6">
+              <div class="pricing2 hover-effect">
+                <div class="panel panel-{{status.theme.lower() }}">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">{{ status.project_status }}</h4>
+                  </div>
+                  <div class="panel-body">
+                    <h6
+                      class="margin-bottom-20 text-center text-{{status.theme.lower()}}"
+                    >
+                      Ksh.{{ frappe.format(status.total_cost, {"fieldtype":
+                      "Currency"}) }}
+                    </h6>
+
+                    <li
+                      class="margin-top-20 text-center text-{{ status.theme.lower() }}"
+                    >
+                      <i class="fa fa-tags"></i>{{ status.count }}
+                    </li>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6">
+                  <div class="pricing hover-effect">
+                    <div class="pricing-head">
+                      <h3>
+                        {{ status.project_status}}
+                        <span> Officia deserunt mollitia </span>
+                      </h3>
+
+                      <h6 style="color: {{ status.color }}">
+                        Ksh.{{ frappe.format(status.total_cost, {"fieldtype":
+                        "Currency"}) }}
+                      </h6>
+                    </div>
+                    <ul class="pricing-content list-unstyled">
+                      <li class="text-center">
+                        <i
+                          class="fa fa-tags"
+                          style="color: {{ status.color }}"
+                        ></i
+                        >{{ status.count }}
+                      </li>
+                      <li><i class="fa fa-asterisk"></i> No Support</li>
+                      <li><i class="fa fa-heart"></i> Fusce condimentum</li>
+                      <li><i class="fa fa-star"></i> Ut non libero</li>
+                      <li>
+                        <i class="fa fa-shopping-cart"></i> {{ status.count }}
+                      </li>
+                    </ul>
+                   <div class="pricing-footer">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non libero magna psum olor .
+                      </p>
+                      <a href="javascript:;" class="btn btn-primary">
+                        Sign Up <i class="m-icon-swapright m-icon-white"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div> -->
+            {% endfor %}
+
+            <!-- <div class="col-md-6">
+                  <div class="pricing hover-effect">
+                    <div class="pricing-head">
+                      <h3>
+                        Pro
+                        <span> Officia deserunt mollitia </span>
+                      </h3>
+                      <h4>
+                        <i>$</i>8<i>.69</i>
+                        <span> Per Month </span>
+                      </h4>
+                    </div>
+                    <ul class="pricing-content list-unstyled">
+                      <li><i class="fa fa-tags"></i> At vero eos</li>
+                      <li><i class="fa fa-asterisk"></i> No Support</li>
+                      <li><i class="fa fa-heart"></i> Fusce condimentum</li>
+                      <li><i class="fa fa-star"></i> Ut non libero</li>
+                      <li>
+                        <i class="fa fa-shopping-cart"></i> Consecte adiping
+                        elit
+                      </li>
+                    </ul>
+                    <div class="pricing-footer">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non libero magna psum olor .
+                      </p>
+                      <a href="javascript:;" class="btn btn-primary">
+                        Sign Up <i class="m-icon-swapright m-icon-white"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="pricing pricing-active hover-effect">
+                    <div class="pricing-head pricing-head-active">
+                      <h3>
+                        Expert
+                        <span> Officia deserunt mollitia </span>
+                      </h3>
+                      <h4>
+                        <i>$</i>13<i>.99</i>
+                        <span> Per Month </span>
+                      </h4>
+                    </div>
+                    <ul class="pricing-content list-unstyled">
+                      <li><i class="fa fa-tags"></i> At vero eos</li>
+                      <li><i class="fa fa-asterisk"></i> No Support</li>
+                      <li><i class="fa fa-heart"></i> Fusce condimentum</li>
+                      <li><i class="fa fa-star"></i> Ut non libero</li>
+                      <li>
+                        <i class="fa fa-shopping-cart"></i> Consecte adiping
+                        elit
+                      </li>
+                    </ul>
+                    <div class="pricing-footer">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non libero magna psum olor .
+                      </p>
+                      <a href="javascript:;" class="btn btn-primary">
+                        Sign Up <i class="m-icon-swapright m-icon-white"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="pricing hover-effect">
+                    <div class="pricing-head">
+                      <h3>
+                        Hi-Tech
+                        <span> Officia deserunt mollitia </span>
+                      </h3>
+                      <h4>
+                        <i>$</i>99<i>.00</i>
+                        <span> Per Month </span>
+                      </h4>
+                    </div>
+                    <ul class="pricing-content list-unstyled">
+                      <li><i class="fa fa-tags"></i> At vero eos</li>
+                      <li><i class="fa fa-asterisk"></i> No Support</li>
+                      <li><i class="fa fa-heart"></i> Fusce condimentum</li>
+                      <li><i class="fa fa-star"></i> Ut non libero</li>
+                      <li>
+                        <i class="fa fa-shopping-cart"></i> Consecte adiping
+                        elit
+                      </li>
+                    </ul>
+                    <div class="pricing-footer">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut non libero magna psum olor .
+                      </p>
+                      <a href="javascript:;" class="btn btn-primary">
+                        Sign Up <i class="m-icon-swapright m-icon-white"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div> -->
+            <!--//End Pricing -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END CONTENT -->
+  </div>
+  <!-- END PROJECT STATUS -->
+</div>
+
+<div class="main">
+  <div class="container">
+    <!-- BEGIN SERVICE BOX -->
+    <div class="row service-box margin-bottom-40">
+      <div class="col-md-4 col-sm-4">
+        <div class="service-box-heading">
+          <em><i class="fa fa-location-arrow blue"></i></em>
+          <span>Track Development Priorities</span>
+        </div>
+        <p>
+          Ordinary citizen and civil societies track implementation of
+          development priorities right from proposals to implementation phases.
+        </p>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="service-box-heading">
+          <em><i class="fa fa-check red"></i></em>
+          <span>Track Project Budget</span>
+        </div>
+        <p>
+          Stakeholders can keep track of spending on a project basis thus
+          enabling tracking of delays and budget overruns
+        </p>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="service-box-heading">
+          <em><i class="fa fa-compress green"></i></em>
+          <span>Grievances/Feedback</span>
+        </div>
+        <p>
+          Stakeholders can have their voices heard either as grievances or
+          feedback concerning projects that are being implemented.
+        </p>
+      </div>
+    </div>
+    <!-- END SERVICE BOX -->
+
+    <!-- BEGIN BLOCKQUOTE BLOCK -->
+    <!-- <div class="row quote-v1 margin-bottom-30">
+      <div class="col-md-9">
+        <span>Public Projects Monitoring Portal</span>
+      </div>
+      <div class="col-md-3 text-right">
+        <a
+          class="btn-transparent"
+          href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin"
+          target="_blank"
+          ><i class="fa fa-rocket margin-right-10"></i>Preview Admin</a
+        >
+      </div>
+    </div> -->
+    <!-- END BLOCKQUOTE BLOCK -->
+
+    <!-- BEGIN RECENT WORKS -->
+    <!-- <div class="row recent-work margin-bottom-40">
+      <div class="col-md-3">
+        <h2><a href="portfolio.html">Recent Works</a></h2>
+        <p>
+          Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut
+          et dolore Ut veniam unde voluptatem. Sed unde omnis iste natus error
+          sit voluptatem.
+        </p>
+      </div>
+      <div class="col-md-9">
+        <div class="owl-carousel owl-carousel3">
+          <div class="recent-work-item">
+            <em>
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                alt="Amazing Project"
+                class="img-responsive"
+              />
+              <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+              <a
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                class="fancybox-button"
+                title="Project Name #1"
+                data-rel="fancybox-button"
+                ><i class="fa fa-search"></i
+              ></a>
+            </em>
+            <a class="recent-work-description" href="javascript:;">
+              <strong>Amazing Project 1</strong>
+              <b>Agenda corp.</b>
+            </a>
+          </div>
+          <div class="recent-work-item">
+            <em>
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/works/img2.jpg"
+                alt="Amazing Project"
+                class="img-responsive"
+              />
+              <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+              <a
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img2.jpg"
+                class="fancybox-button"
+                title="Project Name #2"
+                data-rel="fancybox-button"
+                ><i class="fa fa-search"></i
+              ></a>
+            </em>
+            <a class="recent-work-description" href="javascript:;">
+              <strong>Amazing Project 2</strong>
+              <b>Agenda corp.</b>
+            </a>
+          </div>
+          <div class="recent-work-item">
+            <em>
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/works/img3.jpg"
+                alt="Amazing Project"
+                class="img-responsive"
+              />
+              <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+              <a
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img3.jpg"
+                class="fancybox-button"
+                title="Project Name #3"
+                data-rel="fancybox-button"
+                ><i class="fa fa-search"></i
+              ></a>
+            </em>
+            <a class="recent-work-description" href="javascript:;">
+              <strong>Amazing Project 3</strong>
+              <b>Agenda corp.</b>
+            </a>
+          </div>
+          <div class="recent-work-item">
+            <em>
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/works/img4.jpg"
+                alt="Amazing Project"
+                class="img-responsive"
+              />
+              <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+              <a
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img4.jpg"
+                class="fancybox-button"
+                title="Project Name #4"
+                data-rel="fancybox-button"
+                ><i class="fa fa-search"></i
+              ></a>
+            </em>
+            <a class="recent-work-description" href="javascript:;">
+              <strong>Amazing Project 4</strong>
+              <b>Agenda corp.</b>
+            </a>
+          </div>
+          <div class="recent-work-item">
+            <em>
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/works/img5.jpg"
+                alt="Amazing Project"
+                class="img-responsive"
+              />
+              <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+              <a
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img5.jpg"
+                class="fancybox-button"
+                title="Project Name #5"
+                data-rel="fancybox-button"
+                ><i class="fa fa-search"></i
+              ></a>
+            </em>
+            <a class="recent-work-description" href="javascript:;">
+              <strong>Amazing Project 5</strong>
+              <b>Agenda corp.</b>
+            </a>
+          </div>
+          <div class="recent-work-item">
+            <em>
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/works/img6.jpg"
+                alt="Amazing Project"
+                class="img-responsive"
+              />
+              <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+              <a
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img6.jpg"
+                class="fancybox-button"
+                title="Project Name #6"
+                data-rel="fancybox-button"
+                ><i class="fa fa-search"></i
+              ></a>
+            </em>
+            <a class="recent-work-description" href="javascript:;">
+              <strong>Amazing Project 6</strong>
+              <b>Agenda corp.</b>
+            </a>
+          </div>
+          <div class="recent-work-item">
+            <em>
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/works/img3.jpg"
+                alt="Amazing Project"
+                class="img-responsive"
+              />
+              <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+              <a
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img3.jpg"
+                class="fancybox-button"
+                title="Project Name #3"
+                data-rel="fancybox-button"
+                ><i class="fa fa-search"></i
+              ></a>
+            </em>
+            <a class="recent-work-description" href="javascript:;">
+              <strong>Amazing Project 7</strong>
+              <b>Agenda corp.</b>
+            </a>
+          </div>
+          <div class="recent-work-item">
+            <em>
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/works/img4.jpg"
+                alt="Amazing Project"
+                class="img-responsive"
+              />
+              <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+              <a
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img4.jpg"
+                class="fancybox-button"
+                title="Project Name #4"
+                data-rel="fancybox-button"
+                ><i class="fa fa-search"></i
+              ></a>
+            </em>
+            <a class="recent-work-description" href="javascript:;">
+              <strong>Amazing Project 8</strong>
+              <b>Agenda corp.</b>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- END RECENT WORKS -->
+
+    <!-- BEGIN TABS AND TESTIMONIALS -->
+    <div class="row mix-block margin-bottom-40">
+      <!-- TABS -->
+      <!-- <div class="col-md-7 tab-style-1">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab-1" data-toggle="tab">
+              {{ content["Completed Status Title"]["content"] }}
+            </a>
+          </li>
+          <li>
+            <a href="#tab-2" data-toggle="tab"
+              >{{ content["Ongoing Status Title"]["content"] }}</a
+            >
+          </li>
+          <li>
+            <a href="#tab-3" data-toggle="tab"
+              >{{ content["Stalled Status Title"]["content"] }}</a
+            >
+          </li>
+          <li>
+            <a href="#tab-4" data-toggle="tab"
+              >{{ content["Under Procurement Status Title"]["content"] }}</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane row fade in active" id="tab-1">
+            <div class="col-md-9 col-sm-9">
+              <p>{{ content["Ongoing Status Content"]["content"] }}</p>
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <a
+                href="/assets/project_monitor/dashboard/assets/temp/photos/img7.jpg"
+                class="fancybox-button"
+                title="Image Title"
+                data-rel="fancybox-button"
+              >
+                <img
+                  class="img-responsive"
+                  src="/assets/project_monitor/dashboard/assets/pages/img/photos/img7.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="col-md-9 col-sm-9">
+                  <p class="margin-bottom-10">
+                    {{ content["Completed Status Content"]["content"] }}
+                  </p>
+                  <p>
+                    <a class="more" href="javascript:;"
+                      >Read more <i class="icon-angle-right"></i
+                    ></a>
+                  </p>
+                </div>
+          </div>
+          <div class="tab-pane row fade" id="tab-2">
+            <div class="col-md-9 col-sm-9">
+              <p>{{ content["Ongoing Status Content"]["content"] }}</p>
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <a
+                href="/assets/project_monitor/dashboard/assets/temp/photos/img10.jpg"
+                class="fancybox-button"
+                title="Image Title"
+                data-rel="fancybox-button"
+              >
+                <img
+                  class="img-responsive"
+                  src="/assets/project_monitor/dashboard/assets/pages/img/photos/img10.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab-3">
+            <p>{{ content["Stalled Status Content"]["content"] }}</p>
+          </div>
+          <div class="tab-pane fade" id="tab-4">
+            <p>{{ content["Under Procurement Status Content"]["content"] }}</p>
+          </div>
+        </div>
+      </div> -->
+      <!-- END TABS -->
+
+      <!-- TESTIMONIALS -->
+      <div class="col-md-5 testimonials-v1">
+        <div id="myCarousel" class="carousel slide">
+          <!-- Carousel items -->
+          <!-- <div class="carousel-inner">
+            <div class="active item">
+              <blockquote>
+                <p>
+                  Denim you probably haven't heard of. Lorem ipsum dolor met
+                  consectetur adipisicing sit amet, consectetur adipisicing
+                  elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor
+                  met.
+                </p>
+              </blockquote>
+              <div class="carousel-info">
+                <img
+                  class="pull-left"
+                  src="/assets/project_monitor/dashboard/assets/pages/img/people/img1-small.jpg"
+                  alt=""
+                />
+                <div class="pull-left">
+                  <span class="testimonials-name">Lina Mars</span>
+                  <span class="testimonials-post">Commercial Director</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <blockquote>
+                <p>
+                  Raw denim you Mustache cliche tempor, williamsburg carles
+                  vegan helvetica probably haven't heard of them jean shorts
+                  austin. Nesciunt tofu stumptown aliqua, retro synth master
+                  cleanse. Mustache cliche tempor, williamsburg carles vegan
+                  helvetica.
+                </p>
+              </blockquote>
+              <div class="carousel-info">
+                <img
+                  class="pull-left"
+                  src="/assets/project_monitor/dashboard/assets/pages/img/people/img5-small.jpg"
+                  alt=""
+                />
+                <div class="pull-left">
+                  <span class="testimonials-name">Kate Ford</span>
+                  <span class="testimonials-post">Commercial Director</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <blockquote>
+                <p>
+                  Reprehenderit butcher stache cliche tempor, williamsburg
+                  carles vegan helvetica.retro keffiyeh dreamcatcher synth.
+                  Cosby sweater eu banh mi, qui irure terry richardson ex squid
+                  Aliquip placeat salvia cillum iphone.
+                </p>
+              </blockquote>
+              <div class="carousel-info">
+                <img
+                  class="pull-left"
+                  src="/assets/project_monitor/dashboard/assets/pages/img/people/img2-small.jpg"
+                  alt=""
+                />
+                <div class="pull-left">
+                  <span class="testimonials-name">Jake Witson</span>
+                  <span class="testimonials-post">Commercial Director</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Carousel nav -->
+          <!-- <a class="left-btn" href="#myCarousel" data-slide="prev"></a>
+          <a class="right-btn" href="#myCarousel" data-slide="next"></a> -->
+        </div>
+      </div>
+      <!-- END TESTIMONIALS -->
+    </div>
+    <!-- END TABS AND TESTIMONIALS -->
+
+    <!-- BEGIN STEPS -->
+    <!-- <div class="row margin-bottom-40 front-steps-wrapper front-steps-count-3">
+      <div class="col-md-4 col-sm-4 front-step-col">
+        <div class="front-step front-step1">
+          <h2>Goal definition</h2>
+          <p>
+            Lorem ipsum dolor sit amet sit consectetur adipisicing eiusmod
+            tempor.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 front-step-col">
+        <div class="front-step front-step2">
+          <h2>Analyse</h2>
+          <p>
+            Lorem ipsum dolor sit amet sit consectetur adipisicing eiusmod
+            tempor.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 front-step-col">
+        <div class="front-step front-step3">
+          <h2>Implementation</h2>
+          <p>
+            Lorem ipsum dolor sit amet sit consectetur adipisicing eiusmod
+            tempor.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!-- END STEPS -->
+
+    <!-- BEGIN CLIENTS -->
+    <!-- <div class="row margin-bottom-40 our-clients">
+      <div class="col-md-3">
+        <h2><a href="javascript:;">Our Clients</a></h2>
+        <p>
+          Lorem dipsum folor margade sitede lametep eiusmod psumquis dolore.
+        </p>
+      </div>
+      <div class="col-md-9">
+        <div class="owl-carousel owl-carousel6-brands">
+          <div class="client-item">
+            <a href="javascript:;">
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_1_gray.png"
+                class="img-responsive"
+                alt=""
+              />
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_1.png"
+                class="color-img img-responsive"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="client-item">
+            <a href="javascript:;">
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_2_gray.png"
+                class="img-responsive"
+                alt=""
+              />
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_2.png"
+                class="color-img img-responsive"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="client-item">
+            <a href="javascript:;">
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_3_gray.png"
+                class="img-responsive"
+                alt=""
+              />
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_3.png"
+                class="color-img img-responsive"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="client-item">
+            <a href="javascript:;">
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_4_gray.png"
+                class="img-responsive"
+                alt=""
+              />
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_4.png"
+                class="color-img img-responsive"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="client-item">
+            <a href="javascript:;">
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_5_gray.png"
+                class="img-responsive"
+                alt=""
+              />
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_5.png"
+                class="color-img img-responsive"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="client-item">
+            <a href="javascript:;">
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_6_gray.png"
+                class="img-responsive"
+                alt=""
+              />
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_6.png"
+                class="color-img img-responsive"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="client-item">
+            <a href="javascript:;">
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_7_gray.png"
+                class="img-responsive"
+                alt=""
+              />
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_7.png"
+                class="color-img img-responsive"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="client-item">
+            <a href="javascript:;">
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_8_gray.png"
+                class="img-responsive"
+                alt=""
+              />
+              <img
+                src="/assets/project_monitor/dashboard/assets/pages/img/clients/client_8.png"
+                class="color-img img-responsive"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- END CLIENTS -->
+  </div>
+</div>
+
+{% endblock %}

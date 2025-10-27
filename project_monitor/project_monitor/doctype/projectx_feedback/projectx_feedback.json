@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:FDK-{YYYY}-{#####}",
+ "creation": "2025-06-06 11:54:04.010479",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "subject",
+  "attachment",
+  "project",
+  "project_name",
+  "column_break_cgid",
+  "full_name",
+  "phone_number",
+  "email",
+  "is_public",
+  "section_break_pjct",
+  "description",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_projectx_feedback"
+ ],
+ "fields": [
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name (Optional)"
+  },
+  {
+   "fieldname": "column_break_cgid",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attach Photo/Video/Audio"
+  },
+  {
+   "fieldname": "section_break_pjct",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "ProjectX"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Read Only",
+   "label": "Project Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number (Optional)",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email (Optional)",
+   "options": "Email"
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Feedback Subject",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Feedback Details",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_public",
+   "fieldtype": "Check",
+   "label": "Is Public"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "ProjectX Feedback"
+  },
+  {
+   "fieldname": "parent_projectx_feedback",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent ProjectX Feedback",
+   "options": "ProjectX Feedback"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "make_attachments_public": 1,
+ "modified": "2025-10-20 17:40:29.269625",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Feedback",
+ "naming_rule": "Expression",
+ "nsm_parent_field": "parent_projectx_feedback",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,178 @@
+{% extends 'templates/project_base.html'%} {% block content %}
+
+<div class="main">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="javascript:;">Project</a></li>
+      <li class="active">Search</li>
+    </ul>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12">
+        <h2>Search Projects</h2>
+        <div class="content-page">
+          <form class="content-search-view2">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search project..."
+                name="search"
+                value="{{search_term if search_term else ''}}"
+              />
+              <span class="input-group-btn">
+                <!-- <button type="submit" class="btn btn-primary fa-search">
+                  Clear
+                </button> -->
+              </span>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary">Search</button>
+              </span>
+            </div>
+          </form>
+          {% for proj in projects %}
+          <!--<div class="search-result-item">
+                <h4>
+                  <a href="javascript:;">{{ proj.project_name }}</a>
+                </h4>
+                <p>{{ proj.project_scope }}</p>
+                <a class="search-link" href="javascript:;"
+                  >{{ proj.financial_year}}</a
+                >
+                 <div class="row">
+                  <div class="col-sm-3">
+                    <a class="search-link" href="javascript:;"
+                      >{{ proj.admin_names }}</a
+                    >
+                  </div>
+                  <div class="col-sm-2">
+                    <a class="search-link" href="javascript:;"
+                      >{{ proj.financial_year}}</a
+                    >
+                  </div>
+                </div> 
+              </div>-->
+
+          <div class="search-result-item blog-posts">
+            <h4>
+              {{ proj.project_name }}
+              <!-- <span>
+                <a href="javascript:;">{{ labels.AddFeedback }}</a>
+              </span> -->
+            </h4>
+
+            <ul class="blog-info">
+              <li>
+                <i class="fa fa-calendar"></i> {{ proj.expected_start_date }}
+              </li>
+              <li><i class="fa fa-phone"></i> {{ proj.financial_year }}</li>
+              <li>
+                <i class="fa fa fa-map-marker"></i> {{ proj.admin_names }}
+              </li>
+              <li>
+                <i class="fa fa-comments"></i>
+                <a href="/dashboard/project/feedback?project={{proj.name}}"
+                  >{{ labels.ViewFeedback }}</a
+                >
+              </li>
+              <!-- <li>
+                <i class="fa fa-plus"></i>
+                <a href="javascript:;">{{ labels.AddFeedback }}</a>
+              </li> -->
+            </ul>
+            <!-- <a class="search-link" href="javascript:;"
+              >{{ proj.financial_year }} | {{ proj.admin_names }}</a
+            > -->
+            <!-- <p>
+                  Metronic is a responsive admin dashboard template powered with
+                  Twitter Bootstrap Framework for admin and backend
+                </p> -->
+            <p>{{ proj.project_scope }}...</p>
+            <!-- <a class="search-link" href="javascript:;"
+                  >{{ proj.financial_year }}</a
+                > -->
+            <!-- <p>{{ proj.project_scope }}</p> -->
+            <a href="/dashboard/project/item?project={{proj.name}}" class="more"
+              >Read more <i class="icon-angle-right"></i
+            ></a>
+          </div>
+          {% endfor %}
+
+          <!-- <div class="search-result-item">
+                <h4>
+                  <a href="javascript:;"
+                    >Metronic - Responsive Admin Dashboard Template</a
+                  >
+                </h4>
+                <p>
+                  Metronic is a responsive admin dashboard template powered with
+                  Twitter Bootstrap Framework for admin and backend
+                  applications. Metronic has a clean and intuitive metro style
+                  design which makes your next project look awesome and yet user
+                  friendly..
+                </p>
+                <a class="search-link" href="javascript:;"
+                  >http://www.keenthemes.com</a
+                >
+              </div>
+              <div class="search-result-item">
+                <h4>
+                  <a href="javascript:;"
+                    >Metronic - Responsive Admin Dashboard Template</a
+                  >
+                </h4>
+                <p>
+                  Metronic is a responsive admin dashboard template powered with
+                  Twitter Bootstrap Framework for admin and backend
+                  applications. Metronic has a clean and intuitive metro style
+                  design which makes your next project look awesome and yet user
+                  friendly..
+                </p>
+                <a class="search-link" href="javascript:;"
+                  >http://www.keenthemes.com</a
+                >
+              </div>
+              <div class="search-result-item">
+                <h4>
+                  <a href="javascript:;"
+                    >Metronic - Responsive Admin Dashboard Template</a
+                  >
+                </h4>
+                <p>
+                  Metronic is a responsive admin dashboard template powered with
+                  Twitter Bootstrap Framework for admin and backend
+                  applications. Metronic has a clean and intuitive metro style
+                  design which makes your next project look awesome and yet user
+                  friendly..
+                </p>
+                <a class="search-link" href="javascript:;"
+                  >http://www.keenthemes.com</a
+                >
+              </div> -->
+
+          <div class="row hidden">
+            <div class="col-md-4 col-sm-4 items-info">
+              Items 1 to 9 of 10 total
+            </div>
+            <div class="col-md-8 col-sm-8">
+              <ul class="pagination pull-right">
+                <li><a href="javascript:;">«</a></li>
+                <li><a href="javascript:;">1</a></li>
+                <li><span>2</span></li>
+                <li><a href="javascript:;">3</a></li>
+                <li><a href="javascript:;">4</a></li>
+                <li><a href="javascript:;">5</a></li>
+                <li><a href="javascript:;">»</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END CONTENT -->
+    </div>
+  </div>
+</div>
+
+{% endblock %}

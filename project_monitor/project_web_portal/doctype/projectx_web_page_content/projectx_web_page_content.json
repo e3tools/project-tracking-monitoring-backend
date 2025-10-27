@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-13 20:37:59.766693",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "web_page",
+  "column_break_cgbz",
+  "web_page_title",
+  "content_items_section",
+  "web_page_content_items"
+ ],
+ "fields": [
+  {
+   "fieldname": "web_page",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Web Page",
+   "options": "\nHome Page\nProjects Search Page",
+   "reqd": 1
+  },
+  {
+   "fieldname": "web_page_content_items",
+   "fieldtype": "Table",
+   "label": "Web Page Content Items",
+   "options": "ProjectX Web Page Content Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_cgbz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "web_page_title",
+   "fieldtype": "Data",
+   "label": "Web Page Title"
+  },
+  {
+   "fieldname": "content_items_section",
+   "fieldtype": "Section Break",
+   "label": "Content Items"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-14 06:15:45.258801",
+ "modified_by": "Administrator",
+ "module": "Project Web Portal",
+ "name": "ProjectX Web Page Content",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "web_page"
+}

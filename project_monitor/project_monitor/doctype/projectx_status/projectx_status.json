@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:status_name",
+ "creation": "2025-06-04 11:22:45.361600",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "status_name",
+  "theme",
+  "column_break_fiyi",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "status_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Status Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_fiyi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "This text will appear on the public dashboard which briefly describes what this status represents",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "theme",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Theme",
+   "options": "Primary\nSuccess\nInfo\nWarning\nDanger",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-20 12:41:03.125926",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Status",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

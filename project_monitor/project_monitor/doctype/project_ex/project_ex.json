@@ -1,0 +1,195 @@
+{
+ "_comments": "[{\"comment\": \"Action Failed<br><br><pre><code>Traceback (most recent call last):\\n  File \\\"apps/frappe/frappe/mod...\", \"by\": \"Administrator\", \"name\": \"olmev0sis6\"}, {\"comment\": \"Action Failed<br><br><pre><code>Traceback (most recent call last):\\n  File \\\"apps/frappe/frappe/mod...\", \"by\": \"Administrator\", \"name\": \"p63r3va1fm\"}]",
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "PJ-.#####",
+ "creation": "2025-06-04 11:18:31.548073",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_section",
+  "project_name",
+  "status",
+  "department",
+  "implemented_by",
+  "partner",
+  "column_break_uxur",
+  "expected_start_date",
+  "expected_end_date",
+  "estimated_cost",
+  "section_break_wndw",
+  "project_scope",
+  "tab_break_jpii",
+  "pmc_members",
+  "documentation_tab",
+  "joint_inspection_report",
+  "tab_4_tab",
+  "administrative_level",
+  "administrative_areas",
+  "project_location",
+  "admin_names"
+ ],
+ "fields": [
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Project Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_uxur",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expected_start_date",
+   "fieldtype": "Date",
+   "label": "Expected Start Date"
+  },
+  {
+   "fieldname": "expected_end_date",
+   "fieldtype": "Date",
+   "label": "Expected End Date"
+  },
+  {
+   "fieldname": "section_break_wndw",
+   "fieldtype": "Section Break",
+   "label": "Scope/Location"
+  },
+  {
+   "fieldname": "project_scope",
+   "fieldtype": "Text Editor",
+   "label": "Project Scope"
+  },
+  {
+   "fieldname": "project_location",
+   "fieldtype": "Geolocation",
+   "label": "Project Location"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "DepartmentX"
+  },
+  {
+   "fieldname": "implemented_by",
+   "fieldtype": "Select",
+   "label": "Implemented By",
+   "options": "\nCounty Government\nPartner"
+  },
+  {
+   "depends_on": "eval:doc.implemented_by==\"Partner\"",
+   "fieldname": "partner",
+   "fieldtype": "Link",
+   "label": "Partner",
+   "mandatory_depends_on": "eval:doc.implemented_by==\"Partner\"",
+   "options": "PartnerX"
+  },
+  {
+   "fieldname": "tab_break_jpii",
+   "fieldtype": "Tab Break",
+   "label": "Management"
+  },
+  {
+   "fieldname": "pmc_members",
+   "fieldtype": "Table",
+   "label": "PMC Members",
+   "options": "PMC Member Item Ex"
+  },
+  {
+   "fieldname": "documentation_tab",
+   "fieldtype": "Tab Break",
+   "label": "Documentation"
+  },
+  {
+   "fieldname": "joint_inspection_report",
+   "fieldtype": "Table",
+   "label": "Project Documents",
+   "options": "Project Document Item Ex"
+  },
+  {
+   "fieldname": "estimated_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Cost",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "basic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project Status",
+   "options": "ProjectX Status"
+  },
+  {
+   "fieldname": "tab_4_tab",
+   "fieldtype": "Tab Break",
+   "label": "Project Location"
+  },
+  {
+   "fieldname": "administrative_level",
+   "fieldtype": "Select",
+   "label": "Administrative Level",
+   "options": "\nAdmin 0\nAdmin 1\nAdmin 2"
+  },
+  {
+   "description": "Select the Administrative Level first. This allows you to capture projects that span multiple administrative areas",
+   "fieldname": "administrative_areas",
+   "fieldtype": "Table",
+   "label": "Administrative Areas",
+   "options": "ProjectX Location Item"
+  },
+  {
+   "fieldname": "admin_names",
+   "fieldtype": "Small Text",
+   "label": "Location Names",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-14 13:57:18.595076",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "Project Ex",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "select": 1,
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "project_name"
+}

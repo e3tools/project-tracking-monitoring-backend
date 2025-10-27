@@ -1,0 +1,362 @@
+{% extends 'templates/project_base.html'%} {% block content %}
+<div class="main">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="javascript:;">Dashboard</a></li>
+      <li class="active">{{ labels.PageTitle }}</li>
+    </ul>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-bottom-10">
+      <div class="col-md-8 col-sm-8">
+        <h1>{{ fy }} {{ labels.BodyTitle }}</h1>
+        <div class="content-page hidden">
+          <div class="filter-v1">
+            <!-- FINANCIAL YEARS -->
+            <ul class="mix-filter">
+              <li data-filter="all" class="filter active">All</li>
+              {% for yr in financial_years %}
+              <li data-filter="{{yr.name}}" class="filter">{{yr.name}}</li>
+              {% endfor %}
+              <!-- <li data-filter="category_2" class="filter">Web Development</li>
+              <li data-filter="category_3" class="filter">Photography</li>
+              <li data-filter="category_3 category_1" class="filter">
+                Wordpress and Logo
+              </li> -->
+            </ul>
+            <!-- END FINANCIAL YEARS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="margin-bottom-15 hidden">{{ fy }} Projects</h2>
+    <!-- SERVICE BLOCKS -->
+    <div class="row margin-bottom-10">
+      {% for status in project_by_status_cost %}
+      <div class="col-md-4">
+        <div class="service-box-v1">
+          <!-- <div>
+            <i class="fa fa-thumbs-up"></i>
+            <span>{{ status.project_status }}</span>
+          </div> -->
+          <!-- <h2>{{ status.project_status }}</h2> -->
+
+          <!-- <div class="search-result-item blog-posts">
+            <ul class="blog-info">
+              <li>
+                <i class="fa fa-info-circle"></i> {{ status.project_status }}
+              </li>
+            </ul>
+          </div> -->
+
+          <!-- <div class="search-result-item blog-posts"> -->
+          <ul class="blog-info">
+            <li>
+              <i class="fa fa-thumbs-up"></i>
+              <span class="h4">{{ status.project_status }}</span>
+            </li>
+          </ul>
+          <!-- </div> -->
+          <h3>
+            Ksh.{{frappe.format_value(status.estimated_cost, "Currency")}}
+          </h3>
+          <h3>{{ status.count }}</h3>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- END SERVICE BLOCKS -->
+
+    <!--PROJECT COST BY DEPARTMENT-->
+    <div class="col-md-12 col-sm-12">
+      <div class="hidden">
+        <table class="table table-striped">
+          <thead style="background-color: #212529; color: #fff">
+            <tr>
+              <th scope="col">Department</th>
+              {% for hdr in project_by_dept_cost_headers %}
+              <th scope="col">{{ hdr }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in project_by_dept_cost %}
+            <tr>
+              <th scope="row">{{ entry.department }}</th>
+              {% for hdr in project_by_dept_cost_headers %}
+              <td>{{ entry[hdr] }}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!--END PROJECT COST BY DEPARTMENT-->
+
+      <!--PROJECT COUNT BY DEPARTMENT-->
+      <h3>Projects By Department</h3>
+      <div class="table-responsive">
+        {% set totals_theme_cls = 'danger' %}
+        <table class="table table-striped">
+          <thead style="background-color: #212529; color: #fff">
+            <tr>
+              <th scope="col">Department</th>
+              {% for hdr in project_by_dept_count_headers %}
+              <th scope="col" class="{{ cls }}">{{ hdr }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in project_by_dept_count %} {% set is_last_row =
+            loop.last %} {% set row_cls = totals_theme_cls if is_last_row else
+            '' %}
+            <tr>
+              <!--Department-->
+              <th scope="row" class="{{ row_cls }}">{{ entry.department }}</th>
+              <!--END Department-->
+              <!--Column values -->
+              {% for hdr in project_by_dept_count_headers %} {% set col_cls =
+              totals_theme_cls if loop.last or is_last_row else '' %}
+              <td class="{{ col_cls }}">{{ entry[hdr] }}</td>
+              {% endfor %}
+              <!--END Column values -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!--END PROJECT COUNT BY DEPARTMENT-->
+
+      <!--PROJECT COUNT BY SUB_COUNTIES-->
+      <h3>Projects By Sub-Counties</h3>
+      <div class="table-responsive">
+        {% set totals_theme_cls = 'danger' %}
+        <table class="table table-striped">
+          <thead style="background-color: #212529; color: #fff">
+            <tr>
+              <th scope="col">Sub-County</th>
+              {% for hdr in project_by_subcounty_count_headers %}
+              <th scope="col" class="{{ cls }}">{{ hdr }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in project_by_subcounty_count %} {% set is_last_row =
+            loop.last %} {% set row_cls = totals_theme_cls if is_last_row else
+            '' %}
+            <tr>
+              <!--Sub-County-->
+              <th scope="row" class="{{ row_cls }}">{{ entry.admin_names }}</th>
+              <!--END Sub-County-->
+              <!--Column values -->
+              {% for hdr in project_by_subcounty_count_headers %} {% set col_cls
+              = totals_theme_cls if loop.last or is_last_row else '' %}
+              <td class="{{ col_cls }}">{{ entry[hdr] }}</td>
+              {% endfor %}
+              <!--END Column values -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!--END PROJECT COUNT BY SUB_COUNTIES-->
+
+      <!--PROJECT COUNT BY WARDS-->
+      <h3>Projects By Wards</h3>
+      <div class="table-responsive">
+        {% set totals_theme_cls = 'danger' %}
+        <table class="table table-striped">
+          <thead style="background-color: #212529; color: #fff">
+            <tr>
+              <th scope="col">Ward</th>
+              {% for hdr in project_by_ward_count_headers %}
+              <th scope="col" class="{{ cls }}">{{ hdr }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in project_by_ward_count %} {% set is_last_row =
+            loop.last %} {% set row_cls = totals_theme_cls if is_last_row else
+            '' %}
+            <tr>
+              <!--Sub-County-->
+              <th scope="row" class="{{ row_cls }}">{{ entry.admin_names }}</th>
+              <!--END Sub-County-->
+              <!--Column values -->
+              {% for hdr in project_by_ward_count_headers %} {% set col_cls =
+              totals_theme_cls if loop.last or is_last_row else '' %}
+              <td class="{{ col_cls }}">{{ entry[hdr] }}</td>
+              {% endfor %}
+              <!--END Column values -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!--END PROJECT COUNT BY WARDS-->
+    </div>
+    <div class="col-md-3 col-sm-3 hidden">
+      <!-- PROJECT SUMMARIES -->
+      <div class="row mix-grid thumbnails">
+        <h3 class="text-center"></h3>
+        <div
+          class="col-md-12 col-sm-12 mix category_1 mix_all"
+          style="display: block; opacity: 1"
+        >
+          <div class="mix-inner">
+            <div style="width: 250px">
+              <canvas id="chart-by-budget"></canvas>
+            </div>
+            <!-- <img
+                    alt=""
+                    src="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                    class="img-responsive"
+                  /> -->
+            <div class="mix-details">
+              <h4>{{ labels.ProjectCostTitle }}</h4>
+              <p>{{ labels.ProjectCostSummary }}</p>
+              <a class="mix-link hidden"><i class="fa fa-link"></i></a>
+              <a
+                data-rel="fancybox-button"
+                title="Project Name"
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                class="mix-preview fancybox-button hidden"
+                ><i class="fa fa-search"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-md-12 col-sm-12 mix category_1 mix_all"
+          style="display: block; opacity: 1"
+        >
+          <div class="mix-inner">
+            <div style="width: 250px">
+              <canvas id="chart-by-number"></canvas>
+            </div>
+            <!-- <img
+                    alt=""
+                    src="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                    class="img-responsive"
+                  /> -->
+            <div class="mix-details">
+              <h4>{{ labels.ProjectCountTitle }}</h4>
+              <p>{{ labels.ProjectCountSummary }}</p>
+              <a class="mix-link hidden"><i class="fa fa-link"></i></a>
+              <a
+                data-rel="fancybox-button"
+                title="Project Name"
+                href="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                class="mix-preview fancybox-button hidden"
+                ><i class="fa fa-search"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END PROJECT SUMMARIES -->
+    </div>
+  </div>
+</div>
+{% endblock %} {% block page_level_scripts %}
+<script type="text/javascript">
+  Chart.register(ChartDataLabels); // For global registration
+
+  const ctx = document.getElementById("chart-by-budget").getContext("2d");
+  const ctx2 = document.getElementById("chart-by-number").getContext("2d");
+
+  // 1. Get the query string
+  const queryString = window.location.search;
+
+  // 2. Create a URLSearchParams object
+  const params = new URLSearchParams(queryString);
+
+  // 3. Retrieve parameter values
+  const fy = params.get("fy"); // Returns "Jonathan"
+  frappe.call({
+    method:
+      "project_monitor.www.dashboard.project.summary.get_projects_by_status",
+    args: {
+      fy: fy,
+    },
+    callback: function (r) {
+      if (r.message) {
+        const labels = r.message.map((el) => el.project_status);
+        const counts = r.message.map((el) => el.count);
+        const costs = r.message.map((el) => el.total_cost);
+        if (counts.length == 0) {
+          return;
+        }
+        const plugins = {
+          responsive: true,
+          title: {
+            display: true, // Enable the title display
+            text: "Estimated Cost", // Set the title text
+            color: "primary", // Set the title color
+            position: "top", // Set the title position (e.g., 'top', 'bottom')
+            font: {
+              size: 16, // Set the font size
+              weight: "bold", // Set the font weight
+            },
+          },
+          labels: {
+            // render: "percentage",
+            precision: 2,
+            render: "label",
+            fontSize: 14,
+            fontStyle: "bold",
+            fontColor: "#fff",
+            fontFamily: '"Lucida Console", Monaco, monospace',
+            position: "outside",
+          },
+          datalabels: {
+            formatter: (value, context) => {
+              const total = context.chart.data.datasets[0].data.reduce(
+                (a, b) => a + b,
+                0
+              );
+              const percentage = ((value / total) * 100).toFixed(2);
+              return percentage + "%";
+            },
+            color: "#fff",
+            font: {
+              weight: "bold",
+            },
+          },
+        };
+
+        const myChart = new Chart(ctx, {
+          type: "pie", // or 'bar', 'pie', 'doughnut', etc.
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                // label: "My First Dataset",
+                data: counts,
+                hoverOffset: 4,
+              },
+            ],
+          },
+          options: { plugins: plugins },
+        });
+
+        plugins.title.text = "Number of Projects";
+        const myChart2 = new Chart(ctx2, {
+          type: "pie", // or 'bar', 'pie', 'doughnut', etc.
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                data: costs,
+                hoverOffset: 4,
+              },
+            ],
+          },
+          options: { plugins: plugins },
+        });
+      }
+    },
+  });
+</script>
+{% endblock %}

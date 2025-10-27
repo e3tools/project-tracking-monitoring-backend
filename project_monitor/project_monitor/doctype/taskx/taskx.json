@@ -1,0 +1,158 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-13 19:10:52.576740",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_bvaq",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_taskx",
+  "task_name",
+  "project",
+  "task_type",
+  "task_weight",
+  "column_break_havl",
+  "expected_start_date",
+  "expected_end_date",
+  "status",
+  "actual_start_date",
+  "actual_end_date",
+  "total_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_bvaq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "TaskX"
+  },
+  {
+   "fieldname": "parent_taskx",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent TaskX",
+   "options": "TaskX"
+  },
+  {
+   "fieldname": "task_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Task Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "ProjectX"
+  },
+  {
+   "fieldname": "task_type",
+   "fieldtype": "Link",
+   "label": "Task Type",
+   "options": "TaskX Type"
+  },
+  {
+   "description": "How significant is this task to the overall project status",
+   "fieldname": "task_weight",
+   "fieldtype": "Int",
+   "label": "Task Weight",
+   "precision": "0"
+  },
+  {
+   "fieldname": "column_break_havl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expected_start_date",
+   "fieldtype": "Date",
+   "label": "Expected Start Date"
+  },
+  {
+   "fieldname": "expected_end_date",
+   "fieldtype": "Date",
+   "label": "Expected End Date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Open\nIn Progress\nOverdue\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "actual_start_date",
+   "fieldtype": "Date",
+   "label": "Actual Start Date"
+  },
+  {
+   "fieldname": "actual_end_date",
+   "fieldtype": "Date",
+   "label": "Actual End Date"
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2025-09-13 19:37:41.191046",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "TaskX",
+ "nsm_parent_field": "parent_taskx",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

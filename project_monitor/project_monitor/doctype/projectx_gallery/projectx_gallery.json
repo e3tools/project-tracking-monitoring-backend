@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-14 07:15:45.803984",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "project",
+  "project_title",
+  "column_break_eeet",
+  "description",
+  "gallery_items_section",
+  "items"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "ProjectX",
+   "reqd": 1
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Gallery Items",
+   "options": "ProjectX Gallery Item"
+  },
+  {
+   "fieldname": "column_break_eeet",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_title",
+   "fieldtype": "Read Only",
+   "label": "Project Title"
+  },
+  {
+   "fieldname": "gallery_items_section",
+   "fieldtype": "Section Break",
+   "label": "Gallery Items"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Description",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-25 08:23:33.412249",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Gallery",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-05 12:35:41.523869",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "log_entry_type",
+  "is_visible_to_public",
+  "is_updating_project_progress"
+ ],
+ "fields": [
+  {
+   "fieldname": "log_entry_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Project Log Entry Type",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "If checked, project logs of this type will be visible to public (guest) users",
+   "fieldname": "is_visible_to_public",
+   "fieldtype": "Check",
+   "label": "Is Visible To Public?"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_updating_project_progress",
+   "fieldtype": "Check",
+   "label": "Is Updating Project Progress?"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-06 08:07:40.238915",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Log Entry Type",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

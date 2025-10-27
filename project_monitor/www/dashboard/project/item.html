@@ -1,0 +1,476 @@
+{% extends 'templates/project_base.html'%}
+<!-- Page level plugin styles START -->
+{% block page_level_styles %}
+<link
+  href="/assets/project_monitor/dashboard/assets/plugins/fancybox/source/jquery.fancybox.css"
+  rel="stylesheet"
+/>
+<link
+  href="/assets/project_monitor/dashboard/assets/plugins/owl.carousel/assets/owl.carousel.css"
+  rel="stylesheet"
+/>
+{% endblock %}
+<!-- Page level plugin styles END -->
+
+<!-- Body BEGIN -->
+{% block content %}
+
+<div class="main">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="javascript:;">Projects</a></li>
+      <li class="active">{{ labels.PageTitle }}</li>
+    </ul>
+
+    {% if not project %}
+    <div>
+      <h3>{{ labels.EmptyProject }}</h3>
+    </div>
+    {% endif %} {% if project %}
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-bottom-40">
+      <!-- BEGIN CONTENT -->
+      <div class="col-md-12 col-sm-12">
+        <h1>{{ labels.PageTitle }}</h1>
+        <div class="content-page">
+          <div class="row margin-bottom-30">
+            <!-- BEGIN CAROUSEL -->
+            <div class="col-md-5 front-carousel">
+              <div
+                class="carousel slide"
+                id="myCarousel"
+                style="max-height: 300px"
+              >
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                  {% for gallery_item in gallery_items %}
+                  <div class="item {{'active' if loop.last else '' }}">
+                    <div class="container">
+                      <img alt="" src="{{ gallery_item.attach_file }}" />
+                    </div>
+
+                    <div class="carousel-caption">
+                      <p>{{gallery_item.short_title}}</p>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+                <!-- Carousel nav -->
+                <a
+                  data-slide="prev"
+                  href="#myCarousel"
+                  class="carousel-control left"
+                >
+                  <i class="fa fa-angle-left"></i>
+                </a>
+                <a
+                  data-slide="next"
+                  href="#myCarousel"
+                  class="carousel-control right"
+                >
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+            </div>
+            <!-- END CAROUSEL -->
+
+            <!-- BEGIN PROJECT DESCRIPTION -->
+            <div class="col-md-7">
+              <h2>{{ project.project_name }}</h2>
+              <ul class="blog-info">
+                <li><i class="fa fa-info-circle"></i> {{ project.status }}</li>
+                <li>
+                  <i class="fa fa-calendar"></i> {{ project.expected_start_date
+                  }}
+                </li>
+                <li><i class="fa fa-bars"></i> {{ project.financial_year }}</li>
+                <li>
+                  <i class="fa fa-map-marker"></i> {{ project.admin_names }}
+                </li>
+              </ul>
+              <p class="text-justify">{{ project.project_scope }}</p>
+              <br />
+              <div class="row front-lists-v2 margin-bottom-15">
+                <div class="col-md-12">
+                  <ul class="list-unstyled">
+                    <li>
+                      <div class="row text-capitalize">
+                        <div class="col-sm-4">
+                          <i class="fa fa-html5 text-primary"></i>
+                          {{labels.Department}}
+                        </div>
+                        <div class="col-sm-8">{{ project.department }}</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row text-capitalize">
+                        <div class="col-sm-4">
+                          <i class="fa fa-money text-primary"></i>
+                          {{labels.EstimatedCost}}
+                        </div>
+                        <div class="col-sm-8">
+                          Ksh.{{frappe.format_value(project.estimated_cost,
+                          "Currency") }}
+                        </div>
+                      </div>
+                    </li>
+                    <!-- <li><i class="fa fa-globe"></i> Web Development</li>
+                    <li><i class="fa fa-shopping-cart"></i> Shoping Cart</li> -->
+                  </ul>
+                </div>
+                <div class="col-md-12">
+                  <ul class="list-unstyled">
+                    <li>
+                      <div class="row text-capitalize">
+                        <div class="col-sm-4">
+                          <i class="fa fa-cubes text-primary"></i>
+                          {{labels.ImplementedBy}}
+                        </div>
+                        <div class="col-sm-8">{{ project.implemented_by}}</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row text-capitalize">
+                        <div class="col-sm-4">
+                          <i class="fa fa-cloud text-primary"></i>
+                          {{labels.ApprovalNumber}}
+                        </div>
+                        <div class="col-sm-8">{{ project.approval_number}}</div>
+                      </div>
+                    </li>
+                    <!-- <li><i class="fa fa-comments"></i> Free Support</li>
+                    <li><i class="fa fa-star"></i> Awesome UI</li> -->
+                  </ul>
+                </div>
+              </div>
+              <a href="feedback?project={{project.name}}">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#FeedbackFormModal"
+                >
+                  {{ labels.ViewFeedback}}
+                </button></a
+              >
+            </div>
+            <!-- END PROJECT DESCRIPTION -->
+          </div>
+
+          <div class="row quote-v1 margin-bottom-30">
+            <div class="col-md-10 quote-v1-inner">
+              <span>{{labels.MoreInfo}}</span>
+            </div>
+            <div class="col-md-2 quote-v1-inner text-right">
+              <a href="/dashboard/faq" class="btn-transparent"
+                ><i class="fa fa-rocket margin-right-10"></i>{{labels.FAQ}}</a
+              >
+              <!-- <a href="javascript:;" class="btn-transparent"
+                ><i class="fa fa-gift margin-right-10"></i>Get it FREE</a
+              > -->
+            </div>
+          </div>
+
+          <!-- BEGIN RECENT WORKS -->
+          <div class="owl-carousel owl-carousel3">
+            <div class="recent-work-item">
+              <em>
+                <img
+                  src="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                  alt="Amazing Project"
+                  class="img-responsive"
+                />
+                <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                <a
+                  href="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                  class="fancybox-button"
+                  title="Project Name #1"
+                  data-rel="fancybox-button"
+                  ><i class="fa fa-search"></i
+                ></a>
+              </em>
+              <a class="recent-work-description" href="javascript:;">
+                <strong>Amazing Project</strong>
+                <b>Agenda corp.</b>
+              </a>
+            </div>
+          </div>
+
+          <div class="row recent-work margin-bottom-40 hidden">
+            <div class="col-md-3">
+              <h2><a href="portfolio.html">{{labels.RecentWorksTitle}}</a></h2>
+              <p>{{labels.RecentWorksText}}</p>
+            </div>
+            <div class="col-md-9">
+              <div>
+                <a
+                  data-fancybox="gallery"
+                  class="fancybox-button"
+                  data-rel="fancybox-button"
+                  href="https://lipsum.app/id/60/1600x1200"
+                >
+                  <img
+                    src="https://lipsum.app/id/60/200x150"
+                    width="200"
+                    height="150"
+                    alt=""
+                  />
+                </a>
+
+                <div style="display: none">
+                  <a
+                    data-fancybox="gallery"
+                    class="fancybox-button"
+                    data-rel="fancybox-button"
+                    href="https://lipsum.app/id/61/1600x1200"
+                  >
+                    <img src="https://lipsum.app/id/61/120x80" />
+                  </a>
+                  <a
+                    data-fancybox="gallery"
+                    class="fancybox-button"
+                    data-rel="fancybox-button"
+                    href="https://lipsum.app/id/62/1600x1200"
+                  >
+                    <img src="https://lipsum.app/id/62/120x80" />
+                  </a>
+                  <a
+                    data-fancybox="gallery"
+                    class="fancybox-button"
+                    data-rel="fancybox-button"
+                    href="https://lipsum.app/id/63/1600x1200"
+                  >
+                    <img src="https://lipsum.app/id/63/120x80" />
+                  </a>
+                </div>
+              </div>
+              <div style="display: none">
+                <a
+                  data-fancybox="gallery"
+                  href="https://lipsum.app/id/61/1600x1200"
+                >
+                  <img src="https://lipsum.app/id/61/120x80" />
+                </a>
+                <a
+                  data-fancybox="gallery"
+                  href="https://lipsum.app/id/62/1600x1200"
+                >
+                  <img src="https://lipsum.app/id/62/120x80" />
+                </a>
+                <a
+                  data-fancybox="gallery"
+                  href="https://lipsum.app/id/63/1600x1200"
+                >
+                  <img src="https://lipsum.app/id/63/120x80" />
+                </a>
+              </div>
+              <div class="owl-carousel owl-carousel3">
+                <div class="recent-work-item">
+                  <em>
+                    <img
+                      src="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                      alt="Amazing Project"
+                      class="img-responsive"
+                    />
+                    <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                    <a
+                      href="/assets/project_monitor/dashboard/assets/pages/img/works/img1.jpg"
+                      class="fancybox-button"
+                      title="Project Name #1"
+                      data-rel="fancybox-button"
+                      ><i class="fa fa-search"></i
+                    ></a>
+                  </em>
+                  <a class="recent-work-description" href="javascript:;">
+                    <strong>Amazing Project</strong>
+                    <b>Agenda corp.</b>
+                  </a>
+                </div>
+                <div class="recent-work-item">
+                  <em>
+                    <img
+                      src="/assets/project_monitor/dashboard/assets/pages/img/works/img2.jpg"
+                      alt="Amazing Project"
+                      class="img-responsive"
+                    />
+                    <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                    <a
+                      href="/assets/project_monitor/dashboard/assets/pages/img/works/img2.jpg"
+                      class="fancybox-button"
+                      title="Project Name #2"
+                      data-rel="fancybox-button"
+                      ><i class="fa fa-search"></i
+                    ></a>
+                  </em>
+                  <a class="recent-work-description" href="javascript:;">
+                    <strong>Amazing Project</strong>
+                    <b>Agenda corp.</b>
+                  </a>
+                </div>
+                <div class="recent-work-item">
+                  <em>
+                    <img
+                      src="/assets/project_monitor/dashboard/assets/pages/img/works/img3.jpg"
+                      alt="Amazing Project"
+                      class="img-responsive"
+                    />
+                    <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                    <a
+                      href="/assets/project_monitor/dashboard/assets/pages/img/works/img3.jpg"
+                      class="fancybox-button"
+                      title="Project Name #3"
+                      data-rel="fancybox-button"
+                      ><i class="fa fa-search"></i
+                    ></a>
+                  </em>
+                  <a class="recent-work-description" href="javascript:;">
+                    <strong>Amazing Project</strong>
+                    <b>Agenda corp.</b>
+                  </a>
+                </div>
+                <div class="recent-work-item">
+                  <em>
+                    <img
+                      src="/assets/project_monitor/dashboard/assets/pages/img/works/img4.jpg"
+                      alt="Amazing Project"
+                      class="img-responsive"
+                    />
+                    <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                    <a
+                      href="/assets/project_monitor/dashboard/assets/pages/img/works/img4.jpg"
+                      class="fancybox-button"
+                      title="Project Name #4"
+                      data-rel="fancybox-button"
+                      ><i class="fa fa-search"></i
+                    ></a>
+                  </em>
+                  <a class="recent-work-description" href="javascript:;">
+                    <strong>Amazing Project</strong>
+                    <b>Agenda corp.</b>
+                  </a>
+                </div>
+                <div class="recent-work-item">
+                  <em>
+                    <img
+                      src="/assets/project_monitor/dashboard/assets/pages/img/works/img5.jpg"
+                      alt="Amazing Project"
+                      class="img-responsive"
+                    />
+                    <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                    <a
+                      href="/assets/project_monitor/dashboard/assets/pages/img/works/img5.jpg"
+                      class="fancybox-button"
+                      title="Project Name #5"
+                      data-rel="fancybox-button"
+                      ><i class="fa fa-search"></i
+                    ></a>
+                  </em>
+                  <a class="recent-work-description" href="javascript:;">
+                    <strong>Amazing Project</strong>
+                    <b>Agenda corp.</b>
+                  </a>
+                </div>
+                <div class="recent-work-item">
+                  <em>
+                    <img
+                      src="/assets/project_monitor/dashboard/assets/pages/img/works/img6.jpg"
+                      alt="Amazing Project"
+                      class="img-responsive"
+                    />
+                    <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                    <a
+                      href="/assets/project_monitor/dashboard/assets/pages/img/works/img6.jpg"
+                      class="fancybox-button"
+                      title="Project Name #6"
+                      data-rel="fancybox-button"
+                      ><i class="fa fa-search"></i
+                    ></a>
+                  </em>
+                  <a class="recent-work-description" href="javascript:;">
+                    <strong>Amazing Project</strong>
+                    <b>Agenda corp.</b>
+                  </a>
+                </div>
+                <div class="recent-work-item">
+                  <em>
+                    <img
+                      src="/assets/project_monitor/dashboard/assets/pages/img/works/img3.jpg"
+                      alt="Amazing Project"
+                      class="img-responsive"
+                    />
+                    <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                    <a
+                      href="/assets/project_monitor/dashboard/assets/pages/img/works/img3.jpg"
+                      class="fancybox-button"
+                      title="Project Name #3"
+                      data-rel="fancybox-button"
+                      ><i class="fa fa-search"></i
+                    ></a>
+                  </em>
+                  <a class="recent-work-description" href="javascript:;">
+                    <strong>Amazing Project</strong>
+                    <b>Agenda corp.</b>
+                  </a>
+                </div>
+                <div class="recent-work-item">
+                  <em>
+                    <img
+                      src="/assets/project_monitor/dashboard/assets/pages/img/works/img4.jpg"
+                      alt="Amazing Project"
+                      class="img-responsive"
+                    />
+                    <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
+                    <a
+                      href="/assets/project_monitor/dashboard/assets/pages/img/works/img4.jpg"
+                      class="fancybox-button"
+                      title="Project Name #4"
+                      data-rel="fancybox-button"
+                      ><i class="fa fa-search"></i
+                    ></a>
+                  </em>
+                  <a class="recent-work-description" href="javascript:;">
+                    <strong>Amazing Project</strong>
+                    <b>Agenda corp.</b>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END RECENT WORKS -->
+        </div>
+      </div>
+      <!-- END CONTENT -->
+    </div>
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    {% endif %}
+  </div>
+</div>
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+<script
+  src="/assets/project_monitor/dashboard/assets/plugins/fancybox/source/jquery.fancybox.pack.js"
+  type="text/javascript"
+></script>
+<!-- pop up -->
+<script
+  src="/assets/project_monitor/dashboard/assets/plugins/owl.carousel/owl.carousel.min.js"
+  type="text/javascript"
+></script>
+<!-- slider for products -->
+
+<script
+  src="/assets/project_monitor/dashboard/assets/corporate/scripts/layout.js"
+  type="text/javascript"
+></script>
+<script type="text/javascript">
+  jQuery(document).ready(function () {
+    Layout.init();
+    Layout.initTwitter();
+    Layout.initOWL();
+  });
+</script>
+<!-- END PAGE LEVEL JAVASCRIPTS -->
+
+{% endblock %}
+<!-- END BODY -->

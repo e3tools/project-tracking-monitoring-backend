@@ -1,0 +1,252 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:project_number",
+ "creation": "2025-09-05 05:36:43.016399",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_details_section",
+  "project_number",
+  "project_name",
+  "status",
+  "financial_year",
+  "department",
+  "implemented_by",
+  "partner",
+  "column_break_uxur",
+  "expected_start_date",
+  "expected_end_date",
+  "estimated_cost",
+  "approval_number",
+  "technical_rating",
+  "completion_level",
+  "project_image",
+  "funding_details_section",
+  "source_of_funds",
+  "total_percentage",
+  "section_break_wndw",
+  "project_scope",
+  "tab_4_tab",
+  "administrative_level",
+  "administrative_areas",
+  "project_location",
+  "admin_names"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_details_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Details"
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Project Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project Status",
+   "options": "ProjectX Status",
+   "reqd": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Department",
+   "options": "DepartmentX"
+  },
+  {
+   "fieldname": "implemented_by",
+   "fieldtype": "Select",
+   "label": "Implemented By",
+   "options": "\nCounty Government\nPartner\nLocal Organization"
+  },
+  {
+   "depends_on": "eval:doc.implemented_by==\"Partner\"",
+   "fieldname": "partner",
+   "fieldtype": "Link",
+   "label": "Partner",
+   "mandatory_depends_on": "eval:doc.implemented_by==\"Partner\"",
+   "options": "PartnerX"
+  },
+  {
+   "fieldname": "column_break_uxur",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expected_start_date",
+   "fieldtype": "Date",
+   "label": "Expected Start Date"
+  },
+  {
+   "fieldname": "expected_end_date",
+   "fieldtype": "Date",
+   "label": "Expected End Date"
+  },
+  {
+   "fieldname": "estimated_cost",
+   "fieldtype": "Currency",
+   "label": "Estimated Cost",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_wndw",
+   "fieldtype": "Section Break",
+   "label": "Scope/Location"
+  },
+  {
+   "fieldname": "project_scope",
+   "fieldtype": "Text",
+   "label": "Project Scope"
+  },
+  {
+   "fieldname": "tab_4_tab",
+   "fieldtype": "Tab Break",
+   "label": "Project Location"
+  },
+  {
+   "default": "Admin 3",
+   "fieldname": "administrative_level",
+   "fieldtype": "Select",
+   "label": "Administrative Level",
+   "options": "\nAdmin 0\nAdmin 1\nAdmin 2\nAdmin 3"
+  },
+  {
+   "description": "Select the Administrative Level first. This allows you to capture projects that span multiple administrative areas",
+   "fieldname": "administrative_areas",
+   "fieldtype": "Table",
+   "label": "Administrative Areas",
+   "options": "ProjectX Location Item"
+  },
+  {
+   "fieldname": "project_location",
+   "fieldtype": "Geolocation",
+   "label": "Project Location"
+  },
+  {
+   "fieldname": "admin_names",
+   "fieldtype": "Small Text",
+   "label": "Location Names",
+   "read_only": 1
+  },
+  {
+   "fieldname": "financial_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Financial Year",
+   "options": "Financial YearX",
+   "reqd": 1
+  },
+  {
+   "fieldname": "approval_number",
+   "fieldtype": "Data",
+   "label": "Approval Number"
+  },
+  {
+   "fieldname": "technical_rating",
+   "fieldtype": "Data",
+   "label": "Technical Rating"
+  },
+  {
+   "fieldname": "completion_level",
+   "fieldtype": "Percent",
+   "label": "Completion Level",
+   "read_only": 1
+  },
+  {
+   "fieldname": "project_number",
+   "fieldtype": "Data",
+   "label": "Project Number",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "funding_details_section",
+   "fieldtype": "Section Break",
+   "label": "Funding Details"
+  },
+  {
+   "fieldname": "source_of_funds",
+   "fieldtype": "Table",
+   "label": "Source of Funds",
+   "options": "ProjectX Funding Source",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_percentage",
+   "fieldtype": "Percent",
+   "label": "Total Percentage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "project_image",
+   "fieldtype": "Attach Image",
+   "label": "Project Image"
+  }
+ ],
+ "grid_page_length": 50,
+ "image_field": "project_image",
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "ProjectX Document",
+   "link_fieldname": "project"
+  },
+  {
+   "link_doctype": "ProjectX Team",
+   "link_fieldname": "project"
+  },
+  {
+   "link_doctype": "ProjectX PMC",
+   "link_fieldname": "project"
+  },
+  {
+   "link_doctype": "ProjectX Gallery",
+   "link_fieldname": "project"
+  }
+ ],
+ "make_attachments_public": 1,
+ "modified": "2025-10-25 07:33:16.078306",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "select": 1,
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "project_name"
+}

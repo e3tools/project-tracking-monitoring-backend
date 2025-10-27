@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-13 19:02:53.647212",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "funded_by",
+  "partner",
+  "percentage_of_funding"
+ ],
+ "fields": [
+  {
+   "fieldname": "funded_by",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Funded By",
+   "options": "\nCounty Government\nPartner\nLocal Organization",
+   "reqd": 1
+  },
+  {
+   "fieldname": "percentage_of_funding",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Percentage of Funding",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.funded_by==\"Partner\"",
+   "fieldname": "partner",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Partner",
+   "mandatory_depends_on": "eval:doc.funded_by==\"Partner\"",
+   "options": "PartnerX",
+   "read_only_depends_on": "eval:doc.funded_by !=\"Partner\""
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-09-14 14:27:59.183310",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Funding Source",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

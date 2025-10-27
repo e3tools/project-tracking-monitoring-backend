@@ -1,0 +1,141 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-05 12:39:08.185645",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "project",
+  "project_name",
+  "column_break_vkjh",
+  "project_location",
+  "project_status",
+  "section_break_rbnk",
+  "project_log_entry_type",
+  "is_project_progress",
+  "posting_date",
+  "progress",
+  "column_break_ymxw",
+  "details",
+  "section_break_svga",
+  "creator",
+  "column_break_xgwp",
+  "creator_full_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "ProjectX",
+   "reqd": 1
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Read Only",
+   "label": "Project Name"
+  },
+  {
+   "fieldname": "column_break_vkjh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "project_location",
+   "fieldtype": "Read Only",
+   "label": "Project Location"
+  },
+  {
+   "fieldname": "project_status",
+   "fieldtype": "Read Only",
+   "label": "Project Status"
+  },
+  {
+   "fieldname": "section_break_rbnk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "project_log_entry_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project Log Entry Type",
+   "options": "ProjectX Log Entry Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ymxw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Text",
+   "label": "Details"
+  },
+  {
+   "fieldname": "section_break_svga",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "creator",
+   "fieldtype": "Link",
+   "label": "Creator ",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_xgwp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "creator_full_name",
+   "fieldtype": "Read Only",
+   "label": "Creator Full Name"
+  },
+  {
+   "depends_on": "eval:doc.is_project_progress",
+   "fieldname": "progress",
+   "fieldtype": "Percent",
+   "label": "Progress",
+   "mandatory_depends_on": "eval:doc.is_project_progress"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_project_progress",
+   "fieldtype": "Check",
+   "label": "Is Updating Project Progress",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-06 08:09:13.708317",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

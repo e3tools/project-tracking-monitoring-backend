@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-05 05:36:05.928290",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "document_type",
+  "details",
+  "attach_file"
+ ],
+ "fields": [
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Document Type",
+   "options": "ProjectX Document Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Details"
+  },
+  {
+   "fieldname": "attach_file",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Attach File"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-09-05 05:36:05.928290",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Document Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

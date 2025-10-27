@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-13 20:33:31.798368",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "content_title",
+  "language",
+  "content"
+ ],
+ "fields": [
+  {
+   "fieldname": "content_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Content Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "content",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Content",
+   "reqd": 1
+  },
+  {
+   "description": "Leave blank if it applies to all languages",
+   "fieldname": "language",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Language",
+   "options": "ProjectX Language"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-10-13 21:11:45.741529",
+ "modified_by": "Administrator",
+ "module": "Project Web Portal",
+ "name": "ProjectX Web Page Content Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
