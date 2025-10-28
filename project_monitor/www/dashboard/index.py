@@ -7,6 +7,31 @@ from project_monitor.templates.project_base import get_context as get_base_conte
 
 def get_context(context):
     context = get_base_context(context)
+
+    labels = get_page_content()
+    context.update({"content": labels})
+
+    # Get 8 latest modified projects
+    projects = get_recently_modified_project_galleries()
+    context["recent_projects"] = projects
+
+    # get latest gallery
+    gallery = get_recent_gallery()
+    context["gallery"] = gallery
+
+    context["status_costs"] = get_all_projects_status()
+
+    # project status
+    context["status"] = get_status_list()
+
+    # project feedback
+
+    context["feedback"] = get_feedback()
+    context["labels"] = {}
+    return context
+
+
+def get_page_content():
     lang = frappe.form_dict.page or "en"
     WebPageContent = frappe.qb.DocType("ProjectX Web Page Content")
     WebPageContentItem = frappe.qb.DocType("ProjectX Web Page Content Item")
@@ -33,8 +58,11 @@ def get_context(context):
     labels = {}
     for x in page_labels:
         labels[x.content_title] = x
-    context.update({"content": labels})
 
+    return labels
+
+
+def get_recent_gallery():
     # get latest gallery
     Gallery = frappe.qb.DocType("ProjectX Gallery")
     # Get 8 latest modified projects
@@ -62,9 +90,22 @@ def get_context(context):
         # .limit(3)
     )
     gallery = query.run(as_dict=True)
-    context["recent_projects"] = projects
-    context["gallery"] = gallery
+    return gallery
 
+
+def get_recently_modified_project_galleries():
+    # Get 8 latest modified projects
+    Gallery = frappe.qb.DocType("ProjectX Gallery")
+    projects = (
+        frappe.qb.from_(Gallery)
+        .select(Gallery.name, Gallery.project_title)
+        .orderby(Gallery.modified, order=frappe.qb.desc)
+        .limit(8)
+    )
+    return projects.run(as_dict=True)
+
+
+def get_all_projects_status():
     # project status
     ProjectX = frappe.qb.DocType("ProjectX")
     ProjectXStatus = frappe.qb.DocType("ProjectX Status")
@@ -102,18 +143,22 @@ def get_context(context):
         }
     )
     status_costs.insert(0, all_project_cost[0])
-    context["status_costs"] = status_costs
+    return status_costs
 
+
+def get_status_list():
     # project status
+    ProjectXStatus = frappe.qb.DocType("ProjectX Status")
     query = frappe.qb.from_(ProjectXStatus).select(
         ProjectXStatus.name,
         ProjectXStatus.description,
         ProjectXStatus.theme,
     )
     status = query.run(as_dict=True)
-    context["status"] = status
+    return status
 
-    # project feedback
+
+def get_feedback():
     ProjectXFeedback = frappe.qb.DocType("ProjectX Feedback")
     query = (
         frappe.qb.from_(ProjectXFeedback)
@@ -126,14 +171,4 @@ def get_context(context):
         .limit(5)
     )
     feedback = query.run(as_dict=True)
-    context["feedback"] = feedback
-    context["labels"] = {}
-    return context
-
-
-def get_recent_gallery():
-    pass
-
-
-def get_project_count_by_status():
-    pass
+    return feedback
