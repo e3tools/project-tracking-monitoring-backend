@@ -43,6 +43,11 @@ def get_context(context):
     context["project_by_subcounty_count_headers"] = pivot_headers
     context["project_by_subcounty_count"] = pivot_data
 
+    # get pivot table of total number and cost of projects by sub-counties
+    pivot_headers, pivot_data = get_project_cost_by_subcounties(fy)
+    context["project_by_subcounty_cost_headers"] = pivot_headers
+    context["project_by_subcounty_cost"] = pivot_data
+
     # get pivot table of total number of projects by wards and project status
     pivot_headers, pivot_data = get_project_counts_by_wards_and_status(fy)
     context["project_by_ward_count_headers"] = pivot_headers
@@ -225,33 +230,32 @@ def get_project_costs_by_department_and_status(fy=None):
 
 
 def get_project_counts_by_subcounties_and_status(fy=None):
+    data = _get_sub_county_data(fy=fy)
+    return get_pivot_data(data, "project_status", "sub_county", "count")
+
+
+def get_project_cost_by_subcounties(fy=None):
+    data = _get_sub_county_data(fy=fy, ignore_status=True)
+    # override count column to contain Projects
+    res = []
+    total_no = sum([x["count"] for x in data if x])
+    total_cost = sum([x["total_cost"] for x in data if x])
+    data.append({"sub_county": "Totals", "count": total_no, "total_cost": total_cost})
+    # return get_pivot_data(res, "count", "sub_county", "total_cost")
+    headers = [
+        # {"field": "sub_county", "label": "Sub-County"},
+        {"field": "count", "label": "No. Of Projects"},
+        {"field": "total_cost", "label": "Total Cost"},
+    ]
+    return headers, data
+
+
+def _get_sub_county_data(fy=None, ignore_status=False):
+    """Get data disaggregated by sub-county"""
     ProjectX = frappe.qb.DocType("ProjectX")
     ProjectXStatus = frappe.qb.DocType("ProjectX Status")
     ProjectXLocation = frappe.qb.DocType("ProjectX Location Item")
     Admin3 = frappe.qb.DocType("Admin 3")
-    # Get projects at sub-county level first
-    # query = (
-    #     frappe.qb.from_(ProjectXStatus)
-    #     .left_join(ProjectX)
-    #     # add ProjectX.administrative_level == "Admin 2" as part of the on statement else if you put it
-    #     # in the where clause, it will not work as expected
-    #     .on(
-    #         (ProjectXStatus.name == ProjectX.status)
-    #         & (ProjectX.administrative_level == "Admin 2")
-    #     )
-    #     .left_join(ProjectXLocation)
-    #     .on(ProjectXLocation.parent == ProjectX.name)
-    #     .select(
-    #         Count(ProjectX.name).as_("count"),
-    #         (ProjectXStatus.name).as_("project_status"),
-    #         ProjectX.admin_names,
-    #         GroupConcat(ProjectXLocation.admin).as_("location"),
-    #         Sum(IfNull(ProjectX.estimated_cost, 0)).as_("total_cost"),
-    #     )
-    #     .groupby(ProjectX.admin_names, ProjectXStatus.name)
-    # )
-    # sub_county_projects = query.run(as_dict=True)
-
     query = (
         frappe.qb.from_(ProjectXStatus)
         .left_join(ProjectX)
@@ -271,12 +275,15 @@ def get_project_counts_by_subcounties_and_status(fy=None):
         .select(
             Count(ProjectX.name).as_("count"),
             (ProjectXStatus.name).as_("project_status"),
-            ProjectX.admin_names,
+            ProjectX.admin_names.as_("sub_county"),
             GroupConcat(ProjectXLocation.admin).as_("location"),
             Sum(IfNull(ProjectX.estimated_cost, 0)).as_("total_cost"),
         )
         .distinct()
-        .groupby(ProjectX.admin_names, ProjectXStatus.name)
+        .groupby(
+            ProjectX.admin_names,
+            ProjectXStatus.name if not ignore_status else ProjectX.admin_names,
+        )
     )
     sub_county_projects = query.run(as_dict=True)
 
@@ -303,8 +310,8 @@ def get_project_counts_by_subcounties_and_status(fy=None):
             ProjectX.name.as_("project_id"),
             (ProjectXStatus.name).as_("project_status"),
             # ProjectX.admin_names,
-            Admin3.parent_admin.as_("admin_names"),
-            GroupConcat(ProjectXLocation.admin).as_("location"),
+            Admin3.parent_admin.as_("sub_county"),
+            GroupConcat(ProjectXLocation.admin).as_("ward"),
             ProjectX.estimated_cost,
         )
         .distinct()
@@ -312,17 +319,18 @@ def get_project_counts_by_subcounties_and_status(fy=None):
             Count(ProjectX.name).as_("count"),
             (ProjectXStatus.name).as_("project_status"),
             # ProjectX.admin_names,
-            Admin3.parent_admin.as_("admin_names"),
-            GroupConcat(ProjectXLocation.admin).as_("location"),
+            Admin3.parent_admin.as_("sub_county"),
+            GroupConcat(ProjectXLocation.admin).as_("ward"),
             Sum(IfNull(ProjectX.estimated_cost, 0)).as_("total_cost"),
         )
-        .groupby(ProjectX.admin_names, ProjectXStatus.name)
+        .groupby(
+            # ProjectX.admin_names,
+            Admin3.parent_admin,
+            ProjectXStatus.name if not ignore_status else Admin3.parent_admin,
+        )
     )
     ward_projects = query.run(as_dict=True)
-
-    return get_pivot_data(
-        sub_county_projects + ward_projects, "project_status", "admin_names", "count"
-    )
+    return sub_county_projects + ward_projects
 
 
 def get_project_counts_by_wards_and_status(fy=None):
@@ -349,28 +357,29 @@ def get_project_counts_by_wards_and_status(fy=None):
         .on(ProjectXLocation.parent == ProjectX.name)
         .inner_join(Admin3)
         .on(Admin3.name == ProjectXLocation.admin)
-        .select(
-            ProjectX.name.as_("project_id"),
-            (ProjectXStatus.name).as_("project_status"),
-            # ProjectX.admin_names,
-            Admin3.parent_admin.as_("admin_names"),
-            GroupConcat(ProjectXLocation.admin).as_("location"),
-            ProjectX.estimated_cost,
-        )
+        # .select(
+        #     ProjectX.name.as_("project_id"),
+        #     (ProjectXStatus.name).as_("project_status"),
+        #     # ProjectX.admin_names,
+        #     Admin3.parent_admin.as_("sub_county"),
+        #     GroupConcat(ProjectXLocation.admin).as_("ward"),
+        #     ProjectX.estimated_cost,
+        # )
         # .distinct()
         .select(
             Count(ProjectX.name).as_("count"),
             (ProjectXStatus.name).as_("project_status"),
             # ProjectX.admin_names,
-            Admin3.parent_admin.as_("admin_names"),
-            GroupConcat(ProjectXLocation.admin).as_("location"),
+            Admin3.parent_admin.as_("sub_county"),
+            ProjectXLocation.admin.as_("ward"),
+            # GroupConcat(ProjectXLocation.admin).as_("location"),
             Sum(IfNull(ProjectX.estimated_cost, 0)).as_("total_cost"),
         )
         .groupby(ProjectX.admin_names, ProjectXStatus.name)
     )
     ward_projects = query.run(as_dict=True)
 
-    return get_pivot_data(ward_projects, "project_status", "admin_names", "count")
+    return get_pivot_data(ward_projects, "project_status", "ward", "count")
 
 
 def get_pivot_data(

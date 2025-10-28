@@ -73,9 +73,11 @@
 
             <ul class="blog-info">
               <li><i class="fa fa-info-circle"></i> {{ project.status }}</li>
+              {% if project.expected_start_date %}
               <li>
                 <i class="fa fa-calendar"></i> {{ project.expected_start_date }}
               </li>
+              {% endif %}
               <li><i class="fa fa-bars"></i> {{ project.financial_year }}</li>
               <li>
                 <i class="fa fa-map-marker"></i> {{ project.admin_names }}
@@ -112,8 +114,10 @@
               </div>
             </div>
 
+            {% if feedback %}
             <h2>{{ labels.FeedbackTitle }}</h2>
             <div class="comments">
+              <h3 class="text-center">{{labels.EmptyFeedback}}</h3>
               {% for item in feedback %}
               <div class="media">
                 <a href="javascript:;" class="pull-left">
@@ -208,6 +212,7 @@
 
               {% endfor %}
               <!--end media-->
+
               <!-- <div class="media">
                       <a href="javascript:;" class="pull-left">
                         <img
@@ -235,6 +240,7 @@
                     </div> -->
               <!--end media-->
             </div>
+            {% endif %}
 
             <!-- <div class="post-comment padding-top-40 text-right">
                     <p>
@@ -268,7 +274,7 @@
             <!-- BEGIN RECENT NEWS -->
             <h2 class="hidden">Project Details</h2>
             <div class="recent-news margin-bottom-10">
-              <div class="row margin-bottom-10 margin-top-20">
+              <div class="row margin-bottom-10 padding-top-20">
                 <div class="col-md-3 hidden">
                   <img
                     class="img-responsive"

@@ -57,7 +57,13 @@
 
           <div class="search-result-item blog-posts">
             <h4>
-              {{ proj.project_name }}
+              <a
+                href="/dashboard/project/details?project={{proj.name}}"
+                class="text-left"
+              >
+                {{ proj.project_name }} <i class="icon-angle-right"></i
+              ></a>
+
               <!-- <span>
                 <a href="javascript:;">{{ labels.AddFeedback }}</a>
               </span> -->
@@ -65,18 +71,22 @@
 
             <ul class="blog-info">
               <li>
-                <i class="fa fa-calendar"></i> {{ proj.expected_start_date }}
+                {% if proj.expected_start_date %}
+                <i class="fa fa-calendar"></i> {{ proj.expected_start_date }} {%
+                endif %}
               </li>
-              <li><i class="fa fa-phone"></i> {{ proj.financial_year }}</li>
+              <li>
+                <i class="fa fa-calendar-o"></i> {{ proj.financial_year }}
+              </li>
               <li>
                 <i class="fa fa fa-map-marker"></i> {{ proj.admin_names }}
               </li>
-              <li>
+              <!-- <li>
                 <i class="fa fa-comments"></i>
                 <a href="/dashboard/project/feedback?project={{proj.name}}"
                   >{{ labels.ViewFeedback }}</a
                 >
-              </li>
+              </li> -->
               <!-- <li>
                 <i class="fa fa-plus"></i>
                 <a href="javascript:;">{{ labels.AddFeedback }}</a>
@@ -89,13 +99,17 @@
                   Metronic is a responsive admin dashboard template powered with
                   Twitter Bootstrap Framework for admin and backend
                 </p> -->
+            {% if proj.project_scope %}
             <p>{{ proj.project_scope }}...</p>
+            {% endif %}
             <!-- <a class="search-link" href="javascript:;"
                   >{{ proj.financial_year }}</a
                 > -->
             <!-- <p>{{ proj.project_scope }}</p> -->
-            <a href="/dashboard/project/item?project={{proj.name}}" class="more"
-              >Read more <i class="icon-angle-right"></i
+            <a
+              href="/dashboard/project/details?project={{proj.name}}"
+              class="more hidden"
+              >View more <i class="icon-angle-right"></i
             ></a>
           </div>
           {% endfor %}

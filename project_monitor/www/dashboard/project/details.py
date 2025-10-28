@@ -48,7 +48,7 @@ def get_context(context):
             Feedback.creation,
             Feedback.parent_projectx_feedback,
         )
-        .where(Feedback.project == project_id and Feedback.is_public == 1)
+        .where((Feedback.project == project_id) & (Feedback.is_public == 1))
     )
     raw_feedback = query.run(as_dict=True)
 
@@ -79,7 +79,8 @@ def get_labels():
         "Reply": "Reply",
         "SubmitFeedback": "Submit New Feedback",
         "FeedbackInfo": "We value your feedback",
-        "ViewFeedback": "View Feedback",
+        "ViewFeedback": "Add/View Feedback",
+        "EmptyFeedback": "Be the first to share your thoughts",
     }
     return labels
 

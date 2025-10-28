@@ -305,7 +305,18 @@
               <div class="row margin-bottom-20">
                 {% for status in status_costs %}
                 <div class="col-md-4">
-                  <div class="service-box-v1">
+                  <div class="panel panel-default text-center">
+          <div class="panel-heading">
+            <h2 class="panel-title text-center">
+              <strong>{{ status.project_status }}</strong>
+            </h2>
+          </div>
+          <div class="panel-body text-center">
+            <h3>#{{ status.count }}</h3>
+            <h3>Ksh.{{frappe.format_value(status.total_cost, "Currency")}}</h3>
+          </div>
+        </div>
+                  <div class="service-box-v1 hidden">
                     <div><i class="fa fa-thumbs-up color-grey"></i></div>
                    <h2>{{ status.project_status }}</h2>
                      <h2>

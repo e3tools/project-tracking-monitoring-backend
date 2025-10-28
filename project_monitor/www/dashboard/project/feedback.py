@@ -45,7 +45,7 @@ def get_context(context):
             Feedback.project,
             Feedback.parent_projectx_feedback,
         )
-        .where(Feedback.project == project_id and Feedback.is_public == 1)
+        .where((Feedback.project == project_id) & (Feedback.is_public == 1))
         .orderby(Feedback.modified, order=frappe.qb.asc)
     )
     raw_feedback = query.run(as_dict=True)
@@ -73,7 +73,7 @@ def get_labels():
     labels = {
         "FeedbackTitle": "Feedback",
         "PageTitle": "Project Feedback",
-        "NoData": 'No feedback. Click <a href="page_search_result">here</a> to search',
+        "NoData": "Be the first to share your thoughts",
         "Reply": "Reply",
         "SubmitFeedback": "Submit New Feedback",
         "AddFeedback": "Add Feedback",

@@ -39,6 +39,6 @@ def get_labels():
         "PageTitle": "Project Details",
         "AddFeedback": "Add Feedback",
         "Reply": "Reply",
-        "ViewFeedback": "Feedback",
+        "ViewFeedback": "View Feedback",
     }
     return labels

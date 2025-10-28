@@ -34,8 +34,20 @@
     <!-- SERVICE BLOCKS -->
     <div class="row margin-bottom-10">
       {% for status in project_by_status_cost %}
+
       <div class="col-md-4">
-        <div class="service-box-v1">
+        <div class="panel panel-default text-center">
+          <div class="panel-heading">
+            <h2 class="panel-title text-center">
+              <strong>{{ status.project_status }}</strong>
+            </h2>
+          </div>
+          <div class="panel-body text-center">
+            <h3>#{{ status.count }}</h3>
+            <h3>Ksh.{{frappe.format_value(status.total_cost, "Currency")}}</h3>
+          </div>
+        </div>
+        <div class="service-box-v1 hidden">
           <!-- <div>
             <i class="fa fa-thumbs-up"></i>
             <span>{{ status.project_status }}</span>
@@ -53,14 +65,12 @@
           <!-- <div class="search-result-item blog-posts"> -->
           <ul class="blog-info">
             <li>
-              <i class="fa fa-thumbs-up"></i>
+              <i class="fa fa-thumbs-up fa-lg"></i>
               <span class="h4">{{ status.project_status }}</span>
             </li>
           </ul>
           <!-- </div> -->
-          <h3>
-            Ksh.{{frappe.format_value(status.estimated_cost, "Currency")}}
-          </h3>
+          <h3>Ksh.{{frappe.format_value(status.total_cost, "Currency")}}</h3>
           <h3>{{ status.count }}</h3>
         </div>
       </div>
@@ -147,7 +157,7 @@
             '' %}
             <tr>
               <!--Sub-County-->
-              <th scope="row" class="{{ row_cls }}">{{ entry.admin_names }}</th>
+              <th scope="row" class="{{ row_cls }}">{{ entry.sub_county }}</th>
               <!--END Sub-County-->
               <!--Column values -->
               {% for hdr in project_by_subcounty_count_headers %} {% set col_cls
@@ -181,12 +191,50 @@
             '' %}
             <tr>
               <!--Sub-County-->
-              <th scope="row" class="{{ row_cls }}">{{ entry.admin_names }}</th>
+              <th scope="row" class="{{ row_cls }}">{{ entry.ward }}</th>
               <!--END Sub-County-->
               <!--Column values -->
               {% for hdr in project_by_ward_count_headers %} {% set col_cls =
               totals_theme_cls if loop.last or is_last_row else '' %}
               <td class="{{ col_cls }}">{{ entry[hdr] }}</td>
+              {% endfor %}
+              <!--END Column values -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!--END PROJECT COUNT BY WARDS-->
+
+      <!--PROJECT COST BY SUB-COUNTIES-->
+      <h3>Project Costs By Sub-Counties</h3>
+      <div class="table-responsive">
+        {% set totals_theme_cls = 'danger' %}
+        <table class="table table-striped">
+          <thead style="background-color: #212529; color: #fff">
+            <tr>
+              <th scope="col">Sub-County</th>
+              {% for hdr in project_by_subcounty_cost_headers %}
+              <th scope="col" class="{{ cls }}">{{ hdr.label }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in project_by_subcounty_cost %} {% set is_last_row =
+            loop.last %} {% set row_cls = totals_theme_cls if is_last_row else
+            '' %}
+            <tr>
+              <!--Sub-County-->
+              <th scope="row" class="{{ row_cls }}">{{ entry.sub_county }}</th>
+              <!--END Sub-County-->
+              <!--Column values -->
+              {% for hdr in project_by_subcounty_cost_headers %} {% set col_cls
+              = totals_theme_cls if loop.last or is_last_row else '' %}
+              <td class="{{ col_cls }}">
+                {% if hdr['field'] == 'total_cost' %} Ksh.{{frappe.format_value(
+                entry[hdr['field']], "Currency" )}} {% else %} {{
+                entry[hdr['field']] }} {% endif %}
+              </td>
               {% endfor %}
               <!--END Column values -->
             </tr>

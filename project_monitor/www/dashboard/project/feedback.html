@@ -80,10 +80,12 @@
                   <li>
                     <i class="fa fa-info-circle"></i> {{ project.status }}
                   </li>
+                  {% if project.expected_start_date %}
                   <li>
                     <i class="fa fa-calendar"></i> {{
                     project.expected_start_date }}
                   </li>
+                  {% endif %}
                   <li>
                     <i class="fa fa-bars"></i> {{ project.financial_year }}
                   </li>
@@ -120,6 +122,13 @@
             <!-- <p class="text-justify">{{ project.project_scope }}</p> -->
 
             <!-- <h2>{{ labels.FeedbackTitle }}</h2> -->
+            {% if not feedback %}
+            <div>
+              <blockquote class="blockquote">
+                <p class="mb-0">{{labels.NoData}}</p>
+              </blockquote>
+            </div>
+            {% else %}
             <div class="comments">
               {% for item in feedback %} {% set response_form_id = item.name +
               "Feedback" %} {% set collapse_div_id = response_form_id +
@@ -303,7 +312,7 @@
               {% endfor %}
               <!--end media-->
             </div>
-
+            {% endif %}
             <!--Feedback modal-->
             <!-- Modal -->
             <div
@@ -314,7 +323,7 @@
               aria-labelledby="FeedbackFormModalLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog margin-top-100">
+              <div class="modal-dialog modal-lg margin-top-100">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button
