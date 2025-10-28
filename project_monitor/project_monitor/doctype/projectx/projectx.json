@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:project_number",
- "creation": "2025-09-05 05:36:43.016399",
+ "creation": "2025-10-28 21:08:10.803408",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -14,14 +14,16 @@
   "department",
   "implemented_by",
   "partner",
+  "contractor_name",
   "column_break_uxur",
   "expected_start_date",
   "expected_end_date",
   "estimated_cost",
   "approval_number",
+  "contract_period",
   "technical_rating",
   "completion_level",
-  "project_image",
+  "amount_paid",
   "funding_details_section",
   "source_of_funds",
   "total_percentage",
@@ -43,7 +45,7 @@
    "fieldname": "project_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Project Name",
+   "label": "Project Title",
    "reqd": 1
   },
   {
@@ -147,7 +149,7 @@
   {
    "fieldname": "approval_number",
    "fieldtype": "Data",
-   "label": "Approval Number"
+   "label": "Approval/Contract Number"
   },
   {
    "fieldname": "technical_rating",
@@ -186,13 +188,25 @@
    "read_only": 1
   },
   {
-   "fieldname": "project_image",
-   "fieldtype": "Attach Image",
-   "label": "Project Image"
+   "fieldname": "contractor_name",
+   "fieldtype": "Data",
+   "label": "Contractor Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_period",
+   "fieldtype": "Int",
+   "label": "Contract Period (Days)"
+  },
+  {
+   "fieldname": "amount_paid",
+   "fieldtype": "Currency",
+   "label": "Amount Paid",
+   "precision": "2",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
- "image_field": "project_image",
  "index_web_pages_for_search": 1,
  "links": [
   {
@@ -213,7 +227,7 @@
   }
  ],
  "make_attachments_public": 1,
- "modified": "2025-10-25 07:33:16.078306",
+ "modified": "2025-10-29 00:15:41.636092",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX",
