@@ -47,7 +47,7 @@ class ProjectX(Document):
     # end: auto-generated types
 
     def validate(self):
-        self.admin_names = ",".join([x.admin for x in self.administrative_areas])
+        self.admin_names = ",".join([x.admin for x in self.administrative_areas or []])
         self.validate_funding_sources()
         self.validate_start_dates()
 
