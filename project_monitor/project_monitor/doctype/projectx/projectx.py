@@ -15,28 +15,24 @@ class ProjectX(Document):
 
     if TYPE_CHECKING:
         from frappe.types import DF
-        from project_monitor.project_monitor.doctype.projectx_funding_source.projectx_funding_source import (
-            ProjectXFundingSource,
-        )
-        from project_monitor.project_monitor.doctype.projectx_location_item.projectx_location_item import (
-            ProjectXLocationItem,
-        )
+        from project_monitor.project_monitor.doctype.projectx_funding_source.projectx_funding_source import ProjectXFundingSource
+        from project_monitor.project_monitor.doctype.projectx_location_item.projectx_location_item import ProjectXLocationItem
 
         admin_names: DF.SmallText | None
         administrative_areas: DF.Table[ProjectXLocationItem]
         administrative_level: DF.Literal["", "Admin 0", "Admin 1", "Admin 2", "Admin 3"]
+        amount_paid: DF.Currency
         approval_number: DF.Data | None
         completion_level: DF.Percent
+        contract_period: DF.Int
+        contractor_name: DF.Data
         department: DF.Link | None
         estimated_cost: DF.Currency
         expected_end_date: DF.Date | None
         expected_start_date: DF.Date | None
         financial_year: DF.Link
-        implemented_by: DF.Literal[
-            "", "County Government", "Partner", "Local Organization"
-        ]
+        implemented_by: DF.Literal["", "County Government", "Partner", "Local Organization"]
         partner: DF.Link | None
-        project_image: DF.AttachImage | None
         project_name: DF.Data
         project_number: DF.Data
         project_scope: DF.Text | None
