@@ -15,8 +15,12 @@ class ProjectX(Document):
 
     if TYPE_CHECKING:
         from frappe.types import DF
-        from project_monitor.project_monitor.doctype.projectx_funding_source.projectx_funding_source import ProjectXFundingSource
-        from project_monitor.project_monitor.doctype.projectx_location_item.projectx_location_item import ProjectXLocationItem
+        from project_monitor.project_monitor.doctype.projectx_funding_source.projectx_funding_source import (
+            ProjectXFundingSource,
+        )
+        from project_monitor.project_monitor.doctype.projectx_location_item.projectx_location_item import (
+            ProjectXLocationItem,
+        )
 
         admin_names: DF.SmallText | None
         administrative_areas: DF.Table[ProjectXLocationItem]
@@ -28,7 +32,9 @@ class ProjectX(Document):
         expected_end_date: DF.Date | None
         expected_start_date: DF.Date | None
         financial_year: DF.Link
-        implemented_by: DF.Literal["", "County Government", "Partner", "Local Organization"]
+        implemented_by: DF.Literal[
+            "", "County Government", "Partner", "Local Organization"
+        ]
         partner: DF.Link | None
         project_image: DF.AttachImage | None
         project_name: DF.Data
@@ -77,6 +83,9 @@ class ProjectX(Document):
         """
         Validate start dates are within the set financial year
         """
+        if not self.expected_start_date:
+            return
+
         fy = frappe.db.get_value(
             "Financial YearX",
             self.financial_year,
