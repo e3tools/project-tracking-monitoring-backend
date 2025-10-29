@@ -6,28 +6,31 @@ from project_monitor.templates.project_base import get_context as get_base_conte
 
 
 def get_context(context):
-    context = get_base_context(context)
+    try:
+        context = get_base_context(context)
 
-    labels = get_page_content()
-    context.update({"content": labels})
+        labels = get_page_content()
+        context.update({"content": labels})
 
-    # # Get 8 latest modified projects
-    # projects = get_recently_modified_project_galleries()
-    # context["recent_projects"] = projects
+        # # Get 8 latest modified projects
+        # projects = get_recently_modified_project_galleries()
+        # context["recent_projects"] = projects
 
-    # # get latest gallery
-    # gallery = get_recent_gallery()
-    # context["gallery"] = gallery
+        # # get latest gallery
+        # gallery = get_recent_gallery()
+        # context["gallery"] = gallery
 
-    context["status_costs"] = get_all_projects_status()
+        context["status_costs"] = get_all_projects_status()
 
-    # project status
-    context["status"] = get_status_list()
+        # project status
+        context["status"] = get_status_list()
 
-    # project feedback
+        # project feedback
 
-    context["feedback"] = get_feedback()
-    context["labels"] = {}
+        context["feedback"] = get_feedback()
+        context["labels"] = {}
+    except:
+        pass
     return context
 
 

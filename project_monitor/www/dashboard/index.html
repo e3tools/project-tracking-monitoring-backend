@@ -40,7 +40,7 @@
                   class="carousel-subtitle-v6 text-uppercase border-top-bottom margin-bottom-30"
                   data-animation="animated fadeInDown"
                 >
-                  Keep track of projects status and cost
+                  Keep track of projects implementation status and cost
                 </p>
                 <br />
                 <a
@@ -313,8 +313,7 @@
                     <div class="panel-body text-center">
                       <h3>#{{ status.count }}</h3>
                       <h3>
-                        Ksh.{{frappe.format_value(status.total_cost,
-                        "Currency")}}
+                        {{frappe.format_value(status.total_cost, "Currency")}}
                       </h3>
                     </div>
                   </div>
@@ -356,7 +355,7 @@
                       <h6
                         class="margin-bottom-20 text-center text-{{status.theme.lower()}}"
                       >
-                        Ksh.{{ frappe.format(status.total_cost, {"fieldtype":
+                        {{ frappe.format(status.total_cost, {"fieldtype":
                         "Currency"}) }}
                       </h6>
 
