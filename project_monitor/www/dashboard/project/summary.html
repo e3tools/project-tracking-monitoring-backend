@@ -44,7 +44,7 @@
           </div>
           <div class="panel-body text-center">
             <h3>#{{ status.count }}</h3>
-            <h3>Ksh.{{frappe.format_value(status.total_cost, "Currency")}}</h3>
+            <h3>{{frappe.format_value(status.total_cost, "Currency")}}</h3>
           </div>
         </div>
         <div class="service-box-v1 hidden">
@@ -70,7 +70,7 @@
             </li>
           </ul>
           <!-- </div> -->
-          <h3>Ksh.{{frappe.format_value(status.total_cost, "Currency")}}</h3>
+          <h3>{{frappe.format_value(status.total_cost, "Currency")}}</h3>
           <h3>{{ status.count }}</h3>
         </div>
       </div>
@@ -231,7 +231,7 @@
               {% for hdr in project_by_subcounty_cost_headers %} {% set col_cls
               = totals_theme_cls if loop.last or is_last_row else '' %}
               <td class="{{ col_cls }}">
-                {% if hdr['field'] == 'total_cost' %} Ksh.{{frappe.format_value(
+                {% if hdr['field'] == 'total_cost' %} {{frappe.format_value(
                 entry[hdr['field']], "Currency" )}} {% else %} {{
                 entry[hdr['field']] }} {% endif %}
               </td>
