@@ -12,10 +12,10 @@ class ProjectXTeam(Document):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
-		from frappe.model.document import Document
 		from frappe.types import DF
+		from project_monitor.project_monitor.doctype.projectx_team_member.projectx_team_member import ProjectXTeamMember
 
-		members: DF.Table[Document]
+		members: DF.Table[ProjectXTeamMember]
 		project: DF.Link | None
 		project_location: DF.ReadOnly | None
 		project_name: DF.ReadOnly | None

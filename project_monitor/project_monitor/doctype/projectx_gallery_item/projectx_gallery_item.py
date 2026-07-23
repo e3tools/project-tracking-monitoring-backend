@@ -14,11 +14,10 @@ class ProjectXGalleryItem(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		attach_file: DF.Attach | None
-		description: DF.SmallText | None
+		attach_file: DF.Attach
+		description: DF.Data | None
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data
-		short_title: DF.Data
 	# end: auto-generated types
 	pass

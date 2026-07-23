@@ -14,9 +14,14 @@ class ProjectXDocument(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		attach_file: DF.Attach | None
-		details: DF.SmallText | None
+		attach_file: DF.Attach
 		document_type: DF.Link
+		is_public: DF.Check
+		naming_series: DF.Data | None
 		project: DF.Link
+		project_location: DF.ReadOnly | None
+		project_status: DF.ReadOnly | None
+		project_title: DF.ReadOnly | None
+		remarks: DF.SmallText | None
 	# end: auto-generated types
 	pass

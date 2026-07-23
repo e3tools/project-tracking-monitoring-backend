@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestProjectXLogEntryType(FrappeTestCase):
+class TestProjectXTask(FrappeTestCase):
 	pass

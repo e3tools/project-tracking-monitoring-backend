@@ -1,0 +1,66 @@
+{
+ "actions": [],
+ "creation": "2026-07-22 02:51:58.564651",
+ "description": "  ",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "full_name",
+  "telephone_number",
+  "project_team_role"
+ ],
+ "fields": [
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "telephone_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Telephone Number"
+  },
+  {
+   "fieldname": "project_team_role",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project Team Role",
+   "options": "ProjectX Team Role",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-07-22 03:02:19.201872",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Team Member",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Orange",
+   "title": "Draft"
+  },
+  {
+   "color": "Green",
+   "title": "Submitted"
+  },
+  {
+   "color": "Red",
+   "title": "Cancelled"
+  }
+ ],
+ "track_changes": 1
+}

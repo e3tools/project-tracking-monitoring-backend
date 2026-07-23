@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestTaskXType(FrappeTestCase):
+class TestProjectXUpdateType(FrappeTestCase):
 	pass

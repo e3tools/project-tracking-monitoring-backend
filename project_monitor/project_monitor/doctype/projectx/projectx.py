@@ -32,6 +32,8 @@ class ProjectX(Document):
         expected_start_date: DF.Date | None
         financial_year: DF.Link
         implemented_by: DF.Literal["", "County Government", "Partner", "Local Organization"]
+        latitude: DF.Float
+        longitude: DF.Float
         partner: DF.Link | None
         project_name: DF.Data
         project_number: DF.Data

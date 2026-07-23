@@ -33,7 +33,9 @@
   "administrative_level",
   "administrative_areas",
   "project_location",
-  "admin_names"
+  "admin_names",
+  "latitude",
+  "longitude"
  ],
  "fields": [
   {
@@ -204,30 +206,25 @@
    "label": "Amount Paid",
    "precision": "2",
    "read_only": 1
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "precision": "9"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "precision": "9"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [
-  {
-   "link_doctype": "ProjectX Document",
-   "link_fieldname": "project"
-  },
-  {
-   "link_doctype": "ProjectX Team",
-   "link_fieldname": "project"
-  },
-  {
-   "link_doctype": "ProjectX PMC",
-   "link_fieldname": "project"
-  },
-  {
-   "link_doctype": "ProjectX Gallery",
-   "link_fieldname": "project"
-  }
- ],
+ "links": [],
  "make_attachments_public": 1,
- "modified": "2025-10-29 00:15:41.636092",
+ "modified": "2026-07-22 13:22:40.108419",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX",
@@ -258,6 +255,7 @@
   }
  ],
  "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
  "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",

@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:project",
  "creation": "2025-09-05 09:31:49.214052",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -17,12 +18,16 @@
   {
    "fieldname": "project",
    "fieldtype": "Link",
+   "in_standard_filter": 1,
    "label": "Project",
-   "options": "ProjectX"
+   "options": "ProjectX",
+   "unique": 1
   },
   {
+   "fetch_from": "project.project_name",
    "fieldname": "project_name",
    "fieldtype": "Read Only",
+   "in_list_view": 1,
    "label": "Project Name"
   },
   {
@@ -30,13 +35,17 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "project.admin_names",
    "fieldname": "project_location",
    "fieldtype": "Read Only",
+   "in_list_view": 1,
    "label": "Project Location"
   },
   {
+   "fetch_from": "project.status",
    "fieldname": "project_status",
    "fieldtype": "Read Only",
+   "in_list_view": 1,
    "label": "Project Status"
   },
   {
@@ -53,10 +62,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-05 11:38:20.862841",
+ "modified": "2026-07-22 13:24:36.655773",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX PMC",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -73,6 +83,7 @@
   }
  ],
  "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

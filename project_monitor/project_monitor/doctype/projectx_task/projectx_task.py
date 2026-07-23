@@ -5,7 +5,7 @@
 from frappe.utils.nestedset import NestedSet
 
 
-class TaskX(NestedSet):
+class ProjectXTask(NestedSet):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 

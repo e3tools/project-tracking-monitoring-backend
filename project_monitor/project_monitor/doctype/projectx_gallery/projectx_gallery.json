@@ -1,14 +1,18 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "naming_series:",
  "creation": "2025-10-14 07:15:45.803984",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "naming_series",
   "project",
   "project_title",
+  "project_location",
   "column_break_eeet",
+  "project_status",
   "description",
   "gallery_items_section",
   "items"
@@ -44,20 +48,43 @@
    "label": "Gallery Items"
   },
   {
+   "description": "Describe what these photos are e.g site handover, project inspection etc",
    "fieldname": "description",
    "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Description",
    "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "PROJ-GAL-.YYYY.-"
+  },
+  {
+   "fetch_from": "project.admin_names",
+   "fieldname": "project_location",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Project Location"
+  },
+  {
+   "fetch_from": "project.status",
+   "fieldname": "project_status",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Project Status"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-25 08:23:33.412249",
+ "modified": "2026-07-22 03:28:46.114425",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX Gallery",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -74,7 +101,9 @@
   }
  ],
  "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "project"
 }

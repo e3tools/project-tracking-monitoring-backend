@@ -1,15 +1,22 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "naming_series:",
  "creation": "2025-09-05 05:11:20.322136",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "project",
+  "project_title",
+  "project_location",
+  "project_status",
+  "naming_series",
+  "column_break_mkmu",
   "document_type",
-  "details",
-  "attach_file"
+  "attach_file",
+  "is_public",
+  "remarks"
  ],
  "fields": [
   {
@@ -21,33 +28,70 @@
    "reqd": 1
   },
   {
-   "fieldname": "details",
-   "fieldtype": "Small Text",
-   "in_list_view": 1,
-   "label": "Details"
-  },
-  {
    "fieldname": "attach_file",
    "fieldtype": "Attach",
    "in_list_view": 1,
-   "label": "Attach Document"
+   "label": "Attach Document",
+   "reqd": 1
   },
   {
    "fieldname": "project",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Project",
-   "options": "Project Ex",
+   "options": "ProjectX",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_mkmu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_title",
+   "fieldtype": "Read Only",
+   "label": "Project Title"
+  },
+  {
+   "fetch_from": "project.admin_names",
+   "fieldname": "project_location",
+   "fieldtype": "Read Only",
+   "label": "Project Location"
+  },
+  {
+   "fetch_from": "project.status",
+   "fieldname": "project_status",
+   "fieldtype": "Read Only",
+   "label": "Project Status"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "PROJ-DOC-.YYYY.-"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_public",
+   "fieldtype": "Check",
+   "label": "Is Accessible By The Public"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-14 07:11:48.522763",
+ "modified": "2026-07-22 13:25:49.937062",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX Document",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -64,7 +108,9 @@
   }
  ],
  "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "project"
 }

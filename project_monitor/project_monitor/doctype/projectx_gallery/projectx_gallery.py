@@ -17,7 +17,10 @@ class ProjectXGallery(Document):
 
 		description: DF.SmallText
 		items: DF.Table[ProjectXGalleryItem]
+		naming_series: DF.Data | None
 		project: DF.Link
+		project_location: DF.ReadOnly | None
+		project_status: DF.ReadOnly | None
 		project_title: DF.ReadOnly | None
 	# end: auto-generated types
 	pass

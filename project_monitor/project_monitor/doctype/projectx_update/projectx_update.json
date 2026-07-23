@@ -1,37 +1,35 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "naming_series:",
  "creation": "2025-09-05 12:39:08.185645",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "project",
-  "project_name",
-  "column_break_vkjh",
-  "project_location",
-  "project_status",
-  "section_break_rbnk",
-  "project_log_entry_type",
-  "is_project_progress",
   "posting_date",
+  "project",
+  "project_location",
+  "project_name",
+  "project_status",
+  "naming_series",
+  "column_break_vkjh",
+  "project_update_type",
+  "is_project_progress",
   "progress",
-  "column_break_ymxw",
-  "details",
-  "section_break_svga",
-  "creator",
-  "column_break_xgwp",
-  "creator_full_name"
+  "remarks"
  ],
  "fields": [
   {
    "fieldname": "project",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Project",
    "options": "ProjectX",
    "reqd": 1
   },
   {
+   "fetch_from": "project.project_name",
    "fieldname": "project_name",
    "fieldtype": "Read Only",
    "label": "Project Name"
@@ -41,28 +39,19 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "project.admin_names",
    "fieldname": "project_location",
    "fieldtype": "Read Only",
    "label": "Project Location"
   },
   {
+   "fetch_from": "project.status",
    "fieldname": "project_status",
    "fieldtype": "Read Only",
    "label": "Project Status"
   },
   {
-   "fieldname": "section_break_rbnk",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "project_log_entry_type",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Project Log Entry Type",
-   "options": "ProjectX Log Entry Type",
-   "reqd": 1
-  },
-  {
+   "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -70,39 +59,12 @@
    "reqd": 1
   },
   {
-   "fieldname": "column_break_ymxw",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "details",
-   "fieldtype": "Text",
-   "label": "Details"
-  },
-  {
-   "fieldname": "section_break_svga",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "creator",
-   "fieldtype": "Link",
-   "label": "Creator ",
-   "options": "User"
-  },
-  {
-   "fieldname": "column_break_xgwp",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "creator_full_name",
-   "fieldtype": "Read Only",
-   "label": "Creator Full Name"
-  },
-  {
    "depends_on": "eval:doc.is_project_progress",
    "fieldname": "progress",
    "fieldtype": "Percent",
-   "label": "Progress",
-   "mandatory_depends_on": "eval:doc.is_project_progress"
+   "label": "Progress (%)",
+   "mandatory_depends_on": "eval:doc.is_project_progress",
+   "precision": "2"
   },
   {
    "default": "0",
@@ -110,15 +72,36 @@
    "fieldtype": "Check",
    "label": "Is Updating Project Progress",
    "read_only": 1
+  },
+  {
+   "fieldname": "project_update_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project Update Type",
+   "options": "ProjectX Update Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "label": "Naming Series",
+   "options": "PUPD-.YYYY.-"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-06 08:09:13.708317",
+ "modified": "2026-07-22 13:46:05.516739",
  "modified_by": "Administrator",
  "module": "Project Monitor",
- "name": "ProjectX Log",
+ "name": "ProjectX Update",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -135,7 +118,9 @@
   }
  ],
  "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "project"
 }

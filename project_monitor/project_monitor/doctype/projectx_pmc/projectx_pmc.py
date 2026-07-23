@@ -12,10 +12,10 @@ class ProjectXPMC(Document):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
-		from frappe.model.document import Document
 		from frappe.types import DF
+		from project_monitor.project_monitor.doctype.projectx_pmc_member.projectx_pmc_member import ProjectXPMCMember
 
-		members: DF.Table[Document]
+		members: DF.Table[ProjectXPMCMember]
 		project: DF.Link | None
 		project_location: DF.ReadOnly | None
 		project_name: DF.ReadOnly | None

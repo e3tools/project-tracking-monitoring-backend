@@ -5,7 +5,7 @@
 from frappe.model.document import Document
 
 
-class ProjectXLogEntryType(Document):
+class ProjectXUpdateType(Document):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 
@@ -16,6 +16,6 @@ class ProjectXLogEntryType(Document):
 
 		is_updating_project_progress: DF.Check
 		is_visible_to_public: DF.Check
-		log_entry_type: DF.Data
+		update_type: DF.Data
 	# end: auto-generated types
 	pass

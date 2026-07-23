@@ -1,27 +1,28 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:FDK-{YYYY}-{#####}",
+ "autoname": "naming_series:",
  "creation": "2025-06-06 11:54:04.010479",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "subject",
-  "attachment",
   "project",
   "project_name",
+  "subject",
+  "category",
+  "naming_series",
   "column_break_cgid",
+  "is_public",
+  "is_anonymous",
   "full_name",
   "phone_number",
   "email",
-  "is_public",
   "section_break_pjct",
   "description",
-  "lft",
-  "rgt",
-  "is_group",
-  "old_parent",
-  "parent_projectx_feedback"
+  "column_break_fypw",
+  "status",
+  "attachments_section",
+  "attachments"
  ],
  "fields": [
   {
@@ -34,20 +35,17 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "attachment",
-   "fieldtype": "Attach",
-   "label": "Attach Photo/Video/Audio"
-  },
-  {
    "fieldname": "section_break_pjct",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Feedback Section"
   },
   {
    "fieldname": "project",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Project",
-   "options": "ProjectX"
+   "options": "ProjectX",
+   "reqd": 1
   },
   {
    "fetch_from": "project.project_name",
@@ -77,7 +75,7 @@
   },
   {
    "fieldname": "description",
-   "fieldtype": "Text",
+   "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Feedback Details",
    "reqd": 1
@@ -86,54 +84,61 @@
    "default": "0",
    "fieldname": "is_public",
    "fieldtype": "Check",
-   "label": "Is Public"
+   "label": "Is Visible To The Public"
   },
   {
-   "fieldname": "lft",
-   "fieldtype": "Int",
-   "hidden": 1,
-   "label": "Left",
-   "no_copy": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "rgt",
-   "fieldtype": "Int",
-   "hidden": 1,
-   "label": "Right",
-   "no_copy": 1,
-   "read_only": 1
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Feedback Category",
+   "options": "\nComplaint\nSuggestion\nInquiry\nAppreciation",
+   "reqd": 1
   },
   {
    "default": "0",
-   "fieldname": "is_group",
+   "fieldname": "is_anonymous",
    "fieldtype": "Check",
-   "label": "Is Group"
+   "label": "Is Anonymous"
   },
   {
-   "fieldname": "old_parent",
-   "fieldtype": "Link",
-   "label": "Old Parent",
-   "options": "ProjectX Feedback"
+   "fieldname": "column_break_fypw",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "parent_projectx_feedback",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "Parent ProjectX Feedback",
-   "options": "ProjectX Feedback"
+   "fieldname": "attachments",
+   "fieldtype": "Table",
+   "label": "Attachments",
+   "options": "ProjectX Feedback Attachment Item"
+  },
+  {
+   "description": "<table data-start=\"201\" data-end=\"702\" class=\"w-fit min-w-(--thread-content-width)\"><thead data-start=\"201\" data-end=\"246\"> </thead><tbody data-start=\"257\" data-end=\"702\"><tr data-start=\"257\" data-end=\"316\"><td data-start=\"257\" data-end=\"273\" data-col-size=\"sm\"><strong data-start=\"259\" data-end=\"272\">Submitted</strong></td><td data-col-size=\"md\" data-start=\"273\" data-end=\"316\">Draft completed, received, acknowledged</td></tr><tr data-start=\"317\" data-end=\"397\"><td data-start=\"317\" data-end=\"336\" data-col-size=\"sm\"><strong data-start=\"319\" data-end=\"335\">Under Review</strong></td><td data-col-size=\"md\" data-start=\"336\" data-end=\"397\">Screening, validation, assignment, technical/legal review</td></tr><tr data-start=\"398\" data-end=\"474\"><td data-start=\"398\" data-end=\"423\" data-col-size=\"sm\"><strong data-start=\"400\" data-end=\"422\">Action in Progress</strong></td><td data-col-size=\"md\" data-start=\"423\" data-end=\"474\">Approved for action, implementation, field work</td></tr><tr data-start=\"475\" data-end=\"552\"><td data-start=\"475\" data-end=\"502\" data-col-size=\"sm\"><strong data-start=\"477\" data-end=\"501\">Awaiting Information</strong></td><td data-col-size=\"md\" data-start=\"502\" data-end=\"552\">Waiting for citizen clarification or documents</td></tr><tr data-start=\"553\" data-end=\"607\"><td data-start=\"553\" data-end=\"568\" data-col-size=\"sm\"><strong data-start=\"555\" data-end=\"567\">Resolved</strong></td><td data-col-size=\"md\" data-start=\"568\" data-end=\"607\">Action completed or response issued</td></tr><tr data-start=\"608\" data-end=\"643\"><td data-start=\"608\" data-end=\"621\" data-col-size=\"sm\"><strong data-start=\"610\" data-end=\"620\">Closed</strong></td><td data-start=\"621\" data-end=\"643\" data-col-size=\"md\">Finalized/archived</td></tr><tr data-start=\"644\" data-end=\"702\"><td data-start=\"644\" data-end=\"665\" data-col-size=\"sm\"><strong data-start=\"646\" data-end=\"664\">Not Actionable</strong></td><td data-col-size=\"md\" data-start=\"665\" data-end=\"702\">Rejected, duplicate, out of scope</td></tr></tbody></table>",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nSubmitted\nUnder Review\nAction In Progress\nAwaiting Information\nResolved\nClosed\nNot Actionable"
+  },
+  {
+   "fieldname": "attachments_section",
+   "fieldtype": "Section Break",
+   "label": "Attach Files"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "FDK-.YYYY.-"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "is_tree": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2025-10-20 17:40:29.269625",
+ "modified": "2026-07-22 12:56:35.453748",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX Feedback",
- "naming_rule": "Expression",
+ "naming_rule": "By \"Naming Series\" field",
  "nsm_parent_field": "parent_projectx_feedback",
  "owner": "Administrator",
  "permissions": [
@@ -148,10 +153,24 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
   }
  ],
  "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "search_fields": "subject, project, project_name",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "project"
 }

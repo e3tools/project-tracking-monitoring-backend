@@ -54,14 +54,14 @@
    "fieldname": "old_parent",
    "fieldtype": "Link",
    "label": "Old Parent",
-   "options": "TaskX"
+   "options": "ProjectX Task"
   },
   {
    "fieldname": "parent_taskx",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "label": "Parent TaskX",
-   "options": "TaskX"
+   "options": "ProjectX Task"
   },
   {
    "fieldname": "task_name",
@@ -80,7 +80,7 @@
    "fieldname": "task_type",
    "fieldtype": "Link",
    "label": "Task Type",
-   "options": "TaskX Type"
+   "options": "ProjectX Task Type"
   },
   {
    "description": "How significant is this task to the overall project status",
@@ -131,10 +131,10 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2025-09-13 19:37:41.191046",
+ "modified": "2026-07-22 02:47:44.809335",
  "modified_by": "Administrator",
  "module": "Project Monitor",
- "name": "TaskX",
+ "name": "ProjectX Task",
  "nsm_parent_field": "parent_taskx",
  "owner": "Administrator",
  "permissions": [
@@ -152,6 +152,7 @@
   }
  ],
  "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
