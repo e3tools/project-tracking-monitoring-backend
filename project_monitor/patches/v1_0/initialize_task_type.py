@@ -11,6 +11,6 @@ def execute():
         exists = frappe.db.exists("TaskX Type", itm)
         if exists:
             continue
-        doc = frappe.new_doc({"doctype": "TaskX Type", "task_type": itm}).insert(
+        frappe.get_doc({"doctype": "TaskX Type", "task_type": itm}).insert(
             ignore_permissions=True
         )
