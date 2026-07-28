@@ -5,6 +5,7 @@ import frappe
 from frappe.model.document import Document
 from frappe import _
 from frappe.utils import getdate
+import json
 
 
 class ProjectX(Document):
@@ -26,6 +27,7 @@ class ProjectX(Document):
         completion_level: DF.Percent
         contract_period: DF.Int
         contractor_name: DF.Data
+        cover_image: DF.AttachImage | None
         department: DF.Link | None
         estimated_cost: DF.Currency
         expected_end_date: DF.Date | None
@@ -48,6 +50,7 @@ class ProjectX(Document):
         self.admin_names = ",".join([x.admin for x in self.administrative_areas or []])
         self.validate_funding_sources()
         self.validate_start_dates()
+        self.validate_location()
 
     def validate_funding_sources(self):
         total = 0
@@ -110,6 +113,38 @@ class ProjectX(Document):
         #             self.financial_year
         #         )
         #     )
+
+    def validate_location(self):
+        if not self.project_location:
+            return
+
+        try:
+            geojson = json.loads(self.project_location)
+        except json.JSONDecodeError:
+            frappe.throw(_("Invalid GeoJSON"))
+
+        features = geojson.get("features", [])
+
+        if not features:
+            return
+
+        if len(features) > 1:
+            frappe.throw(
+                _(
+                    "Only one geometry is allowed. Please keep either a single Point or a single Polygon."
+                )
+            )
+
+        geometry = features[0].get("geometry", {})
+        geometry_type = geometry.get("type")
+
+        if geometry_type == "GeometryCollection":
+            frappe.throw(_("GeometryCollection is not supported."))
+
+        if geometry_type not in ("Point", "Polygon"):
+            frappe.throw(
+                _("Exactly one geometry is allowed (one Point or one Polygon).")
+            )
 
     @frappe.whitelist(allow_guest=True)
     def get_vector(self, doctype, docname):

@@ -15,6 +15,7 @@
   "column_break_vkjh",
   "project_update_type",
   "is_project_progress",
+  "is_visible_to_public",
   "progress",
   "remarks"
  ],
@@ -92,12 +93,19 @@
    "fieldtype": "Data",
    "label": "Naming Series",
    "options": "PUPD-.YYYY.-"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_visible_to_public",
+   "fieldtype": "Check",
+   "label": " Is Visible To Public?",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-22 13:46:05.516739",
+ "modified": "2026-07-24 13:22:26.187270",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX Update",

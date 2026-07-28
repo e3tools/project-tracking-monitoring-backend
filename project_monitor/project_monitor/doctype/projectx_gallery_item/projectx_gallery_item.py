@@ -15,9 +15,10 @@ class ProjectXGalleryItem(Document):
 		from frappe.types import DF
 
 		attach_file: DF.Attach
-		description: DF.Data | None
+		caption: DF.Data | None
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data
+		use_as_the_cover_image: DF.Check
 	# end: auto-generated types
 	pass

@@ -22,9 +22,46 @@ frappe.ui.form.on("ProjectX", {
         item.doctype,
         item.name,
         "admin_level",
-        frm.doc.administrative_level
+        frm.doc.administrative_level,
       );
     });
+  },
+  project_location(frm) {
+    if (!frm.doc.project_location) {
+      frappe.model.set_value(frm.doc.doctype, frm.doc.name, "latitude", 0);
+      frappe.model.set_value(frm.doc.doctype, frm.doc.name, "longitude", 0);
+      return;
+    }
+
+    const geojson = JSON.parse(frm.doc.project_location);
+
+    if (
+      geojson.features &&
+      geojson.features.length > 0 &&
+      geojson.features[0].geometry.type === "Point"
+    ) {
+      const [lng, lat] = geojson.features[0].geometry.coordinates;
+      frappe.model.set_value(frm.doc.doctype, frm.doc.name, "latitude", lat);
+      frappe.model.set_value(frm.doc.doctype, frm.doc.name, "longitude", lng);
+      console.log("Latitude:", lat);
+      console.log("Longitude:", lng);
+    }
+    // const geo = frm.fields_dict.project_location.map;
+
+    // if (!geo) return;
+
+    // // Leaflet map instance
+    // const map = geo.map;
+
+    // map.eachLayer(function (layer) {
+    //   if (layer instanceof L.Marker) {
+    //     layer.on("click", function (e) {
+    //       debugger;
+    //       console.log("Latitude:", e.latlng.lat);
+    //       console.log("Longitude:", e.latlng.lng);
+    //     });
+    //   }
+    // });
   },
 });
 
@@ -61,7 +98,7 @@ project_monitor.projects.load_maps = (frm) => {
             frm.doctype,
             frm.docname,
             "project_location",
-            r.message
+            r.message,
           );
         }
       },
@@ -75,7 +112,7 @@ frappe.ui.form.on(
   "percentage_of_funding",
   function (frm) {
     project_monitor.projects.set_total_funding(frm);
-  }
+  },
 );
 
 frappe.ui.form.on(
@@ -83,7 +120,7 @@ frappe.ui.form.on(
   "source_of_funds_remove",
   function (frm) {
     project_monitor.projects.set_total_funding(frm);
-  }
+  },
 );
 
 project_monitor.projects.set_total_funding = function (frm) {
@@ -94,13 +131,13 @@ project_monitor.projects.set_total_funding = function (frm) {
     } else {
       if (row.percentage_of_funding < 0) {
         msgprint(
-          __("Row {0}: Percentage of funding cannot be negative", [row.idx])
+          __("Row {0}: Percentage of funding cannot be negative", [row.idx]),
         );
         frappe.model.set_value(
           row.doctype,
           row.name,
           "percentage_of_funding",
-          0.0
+          0.0,
         );
       }
     }

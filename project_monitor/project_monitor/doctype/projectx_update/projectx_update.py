@@ -17,6 +17,7 @@ class ProjectXUpdate(Document):
         from frappe.types import DF
 
         is_project_progress: DF.Check
+        is_visible_to_public: DF.Check
         naming_series: DF.Data | None
         posting_date: DF.Date
         progress: DF.Percent
