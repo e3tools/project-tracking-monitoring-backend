@@ -2,6 +2,7 @@ import frappe
 
 
 def after_install():
+    return
     # Automatically configure CORS for the site on app installation
     frappe.installer.update_site_config("allow_cors", "*")  # or "http://localhost:3000"
     frappe.installer.update_site_config(
