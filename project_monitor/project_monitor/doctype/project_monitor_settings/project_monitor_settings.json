@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-10 17:46:40.384541",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_calculation_settings",
+  "pending_bill_calculation_method",
+  "admin_1_display_name",
+  "admin_2_display_name",
+  "admin_3_display_name",
+  "admin_4_display_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_calculation_settings",
+   "fieldtype": "Section Break",
+   "label": "Calculation Rules & Methodologies"
+  },
+  {
+   "default": "Payment Certificate (IPC) Ledger",
+   "description": "Choose whether outstanding project liabilities are calculated from certified Interim Payment Certificates (IPCs) or derived automatically from Physical Completion Percentage.",
+   "fieldname": "pending_bill_calculation_method",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Pending Liabilities Calculation Method",
+   "options": "Payment Certificate (IPC) Ledger\nEarned Value Progress Estimate",
+   "reqd": 1
+  },
+  {
+   "default": "County",
+   "fieldname": "admin_1_display_name",
+   "fieldtype": "Data",
+   "label": "Admin 1 Display Name"
+  },
+  {
+   "default": "Sub County",
+   "fieldname": "admin_2_display_name",
+   "fieldtype": "Data",
+   "label": "Admin 2 Display Name"
+  },
+  {
+   "default": "Ward",
+   "fieldname": "admin_3_display_name",
+   "fieldtype": "Data",
+   "label": "Admin 3 Display Name"
+  },
+  {
+   "fieldname": "admin_4_display_name",
+   "fieldtype": "Data",
+   "label": "Admin 4 Display Name"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-08-10 19:14:49.647304",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "Project Monitor Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
