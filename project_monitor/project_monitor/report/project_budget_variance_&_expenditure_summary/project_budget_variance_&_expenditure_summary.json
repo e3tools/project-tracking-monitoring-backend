@@ -1,0 +1,31 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-08-10 17:17:05.366752",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-08-10 18:20:56.102954",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "Project Budget Variance & Expenditure Summary",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "ProjectX",
+ "report_name": "Project Budget Variance & Expenditure Summary",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Guest"
+  }
+ ],
+ "timeout": 0
+}
