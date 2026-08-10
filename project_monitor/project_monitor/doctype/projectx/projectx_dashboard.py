@@ -25,6 +25,13 @@ def get_data():
                 "label": _("Implementation"),
                 "items": ["ProjectX Update"],
             },
+            {
+                "label": _("Execution"),
+                "items": [
+                    "ProjectX Disbursement",
+                    "ProjectX Progress Report",
+                ],
+            },
         ],
         "disable_create_buttons": [
             "ProjectX Feedback Response",
