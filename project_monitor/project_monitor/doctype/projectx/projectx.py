@@ -17,10 +17,18 @@ class ProjectX(Document):
 
     if TYPE_CHECKING:
         from frappe.types import DF
-        from project_monitor.project_monitor.doctype.projectx_funding_source.projectx_funding_source import ProjectXFundingSource
-        from project_monitor.project_monitor.doctype.projectx_location_item.projectx_location_item import ProjectXLocationItem
+        from project_monitor.project_monitor.doctype.projectx_funding_source.projectx_funding_source import (
+            ProjectXFundingSource,
+        )
+        from project_monitor.project_monitor.doctype.projectx_location_item.projectx_location_item import (
+            ProjectXLocationItem,
+        )
 
         actual_end_date: DF.Date | None
+        admin_1_names: DF.Data | None
+        admin_2_names: DF.Data | None
+        admin_3_names: DF.Data | None
+        admin_4_names: DF.Data | None
         admin_names: DF.SmallText | None
         administrative_areas: DF.Table[ProjectXLocationItem]
         administrative_level: DF.Literal["", "Admin 0", "Admin 1", "Admin 2", "Admin 3"]
@@ -41,7 +49,9 @@ class ProjectX(Document):
         department: DF.Link | None
         development_partner_cost_component: DF.Currency
         environment_social_health_gender_risk_mitigation: DF.SmallText | None
-        environment_social_health_gender_risk_reasons_for_not_screening: DF.SmallText | None
+        environment_social_health_gender_risk_reasons_for_not_screening: (
+            DF.SmallText | None
+        )
         estimated_cost: DF.Currency
         expected_end_date: DF.Date | None
         expected_start_date: DF.Date | None
@@ -50,7 +60,9 @@ class ProjectX(Document):
         has_been_screened_for_environment_social_health_gender_risks: DF.Check
         has_been_screened_for_technical_financial_economic_viability: DF.Check
         health_status: DF.Literal["On Track", "Delayed", "Budget Exceeded", "Stalled"]
-        implemented_by: DF.Literal["", "County Government", "Partner", "Local Organization"]
+        implemented_by: DF.Literal[
+            "", "County Government", "Partner", "Local Organization"
+        ]
         is_handed_over: DF.Check
         is_project_in_budget: DF.Check
         last_progress_update_date: DF.Date | None
@@ -67,7 +79,9 @@ class ProjectX(Document):
         project_output: DF.SmallText | None
         project_risks: DF.SmallText | None
         project_scope: DF.SmallText | None
-        recommendation_for_the_stalled_project: DF.Literal["", "Complete", "Cancel", "Defer"]
+        recommendation_for_the_stalled_project: DF.Literal[
+            "", "Complete", "Cancel", "Defer"
+        ]
         sector: DF.Link
         source_of_funds: DF.Table[ProjectXFundingSource]
         stalling_reasons: DF.SmallText | None
@@ -89,6 +103,70 @@ class ProjectX(Document):
         self.validate_funding_sources()
         self.validate_start_dates()
         self.validate_location()
+        self.set_admin_names()
+
+    def set_admin_names(self):
+        def get_parent_admin(admin_level: int, admin: str):
+            parent = frappe.db.get_value(
+                f"Admin {admin_level}", admin, "parent_admin", cache=True
+            )
+            return parent
+
+        self.admin_1_names = ""
+        self.admin_2_names = ""
+        self.admin_3_names = ""
+        self.admin_4_names = ""
+
+        admin_areas = [x.admin for x in self.administrative_areas or []]
+        if self.administrative_level == "Admin 1":
+            self.admin_1_names = ",".join(admin_areas)
+        if self.administrative_level == "Admin 2":
+            self.admin_2_names = ",".join(admin_areas)
+            # get level 1 ids
+            self.admin_1_names = [
+                get_parent_admin(admin_level=2, admin=x) for x in admin_areas
+            ]
+
+        if self.administrative_level == "Admin 3":
+            self.admin_3_names = ",".join(admin_areas)
+            # get level 2 ids
+            self.admin_2_names = ",".join(
+                [
+                    get_parent_admin(admin_level=3, admin=x)
+                    for x in set(self.admin_3_names.split(","))
+                ]
+            )
+            # get level 1 ids
+            self.admin_1_names = ",".join(
+                [
+                    get_parent_admin(admin_level=2, admin=x)
+                    for x in set(self.admin_2_names.split(","))
+                ]
+            )
+
+        if self.administrative_level == "Admin 4":
+            self.admin_4_names = ",".join(admin_areas)
+            # get level 3 ids
+            self.admin_3_names = ",".join(
+                [
+                    get_parent_admin(admin_level=4, admin=x)
+                    for x in set(self.admin_4_names.split(","))
+                ]
+            )
+            # get level 2 ids
+            self.admin_2_names = ",".join(
+                [
+                    get_parent_admin(admin_level=3, admin=x)
+                    for x in set(self.admin_3_names.split(","))
+                ]
+            )
+            # get level 1 ids
+            self.admin_1_names = ",".join(
+                [
+                    get_parent_admin(admin_level=2, admin=x)
+                    for x in set(self.admin_2_names.split(","))
+                ]
+            )
 
     def on_update(self):
         self.add_updater_timeline_comment()
