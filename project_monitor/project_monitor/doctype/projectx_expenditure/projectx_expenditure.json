@@ -83,7 +83,7 @@
    "fieldname": "expense_category",
    "fieldtype": "Link",
    "label": "Expense Category",
-   "options": "ProjectX Expenditure Category",
+   "options": "Expenditure Category",
    "reqd": 1
   },
   {
@@ -102,7 +102,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-08-10 18:55:10.252970",
+ "modified": "2026-08-11 08:17:00.612095",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX Expenditure",

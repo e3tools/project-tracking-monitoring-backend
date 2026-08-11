@@ -5,7 +5,7 @@
 from frappe.model.document import Document
 
 
-class ProjectXExpenditureCategory(Document):
+class FundingSourceType(Document):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 
@@ -14,6 +14,7 @@ class ProjectXExpenditureCategory(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		expenditure_category: DF.Data
+		funding_source_type: DF.Data
+		is_partner: DF.Check
 	# end: auto-generated types
 	pass

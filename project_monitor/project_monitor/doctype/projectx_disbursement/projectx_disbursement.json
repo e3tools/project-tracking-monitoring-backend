@@ -67,7 +67,7 @@
    "fieldname": "funding_source",
    "fieldtype": "Link",
    "label": "Funding Source Type",
-   "options": "ProjectX Funding Source Type",
+   "options": "Funding Source Type",
    "reqd": 1
   },
   {
@@ -103,7 +103,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-08-10 18:55:32.252965",
+ "modified": "2026-08-11 08:05:06.997708",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX Disbursement",
