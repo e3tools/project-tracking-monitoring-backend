@@ -10,10 +10,16 @@ frappe.query_reports["Pending Liabilities & IPC Ledger"] = {
       options: "DepartmentX",
     },
     {
-      fieldname: "sub_county",
+      fieldname: "admin_2",
       label: __("Sub County"),
       fieldtype: "Link",
       options: "Admin 2",
+    },
+    {
+      fieldname: "admin_3",
+      label: __("Ward"),
+      fieldtype: "Link",
+      options: "Admin 3",
     },
     {
       fieldname: "status",
@@ -40,14 +46,11 @@ frappe.query_reports["Pending Liabilities & IPC Ledger"] = {
       ),
     ]).then(([admin2, admin3]) => {
       if (admin2) {
-        project_monitor.report_utils.set_report_filter_hint(
-          "sub_county",
-          admin2,
-        );
+        project_monitor.report_utils.set_report_filter_hint("admin_2", admin2);
       }
 
       if (admin3) {
-        project_monitor.report_utils.set_report_filter_hint("ward", admin3);
+        project_monitor.report_utils.set_report_filter_hint("admin_3", admin3);
       }
     });
   },

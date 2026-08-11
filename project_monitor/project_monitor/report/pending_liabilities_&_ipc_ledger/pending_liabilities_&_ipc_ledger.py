@@ -2,7 +2,6 @@
 # For license information, please see license.txt
 
 import frappe
-
 from frappe import _
 from frappe.utils import flt
 
@@ -101,44 +100,50 @@ def get_data(filters):
         conditions.append("p.department = %(department)s")
         values["department"] = filters.get("department")
 
-    if filters.get("sub_county"):
-        conditions.append("p.sub_county LIKE %(sub_county)s")
-        values["sub_county"] = f"%{filters.get('sub_county')}%"
+    if filters.get("admin_2"):
+        conditions.append("FIND_IN_SET(%(admin_2)s, admin_2_names) > 0")
+        values["admin_2"] = f"{filters.get('admin_2')}"
+
+    if filters.get("admin_3"):
+        # conditions.append("p.sub_county LIKE %(sub_county)s")
+        # values["sub_county"] = f"%{filters.get('sub_county')}%"
+        conditions.append("FIND_IN_SET(%(admin_3)s, admin_3_names) > 0")
+        values["admin_3"] = f"{filters.get('admin_3')}"
 
     where_clause = f"WHERE {' AND '.join(conditions)}" if conditions else ""
 
     sql_query = f"""
-        SELECT
-            p.name AS project,
-            p.project_name,
-            p.department,
-            p.approved_budget,
-            p.total_certified_amount AS net_certified,
-            p.total_expenditure_amount AS total_paid,
-            p.pending_bills_amount AS pending_bills,
-            (
-                SELECT COALESCE(SUM(gross_certified_amount), 0.0)
-                FROM `tabProject Payment Certificate`
-                WHERE project = p.name AND docstatus = 1
-            ) AS gross_certified,
-            (
-                SELECT COALESCE(SUM(retention_amount), 0.0)
-                FROM `tabProject Payment Certificate`
-                WHERE project = p.name AND docstatus = 1
-            ) AS total_retention,
-            (
-                SELECT COUNT(name)
-                FROM `tabProject Payment Certificate`
-                WHERE project = p.name AND docstatus = 1
-            ) AS ipc_count
-        FROM
-            `tabProjectX` p
-        {where_clause}
-        ORDER BY
-            p.pending_bills_amount DESC, p.creation DESC
-    """
+		SELECT
+			p.name AS project,
+			p.project_name,
+			p.department,
+			p.approved_budget,
+			p.total_certified_amount AS net_certified,
+			p.total_expenditure_amount AS total_paid,
+			p.pending_bills_amount AS pending_bills,
+			(
+				SELECT COALESCE(SUM(gross_certified_amount), 0.0)
+				FROM `tabProject Payment Certificate`
+				WHERE project = p.name AND docstatus = 1
+			) AS gross_certified,
+			(
+				SELECT COALESCE(SUM(retention_amount), 0.0)
+				FROM `tabProject Payment Certificate`
+				WHERE project = p.name AND docstatus = 1
+			) AS total_retention,
+			(
+				SELECT COUNT(name)
+				FROM `tabProject Payment Certificate`
+				WHERE project = p.name AND docstatus = 1
+			) AS ipc_count
+		FROM
+			`tabProjectX` p
+		{where_clause}
+		ORDER BY
+			p.pending_bills_amount DESC, p.creation DESC
+	"""
 
-    raw_data = frappe.db.sql(sql_query, values, as_dict=True)
+    raw_data = frappe.db.sql(sql_query, values, as_dict=True, debug=False)
     data = []
 
     for row in raw_data:

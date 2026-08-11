@@ -108,9 +108,18 @@ def get_data(filters):
         conditions.append("department = %(department)s")
         values["department"] = filters.get("department")
 
-    if filters.get("sub_county"):
-        conditions.append("sub_county LIKE %(sub_county)s")
-        values["sub_county"] = f"%{filters.get('sub_county')}%"
+    # if filters.get("sub_county"):
+    #     conditions.append("sub_county LIKE %(sub_county)s")
+    #     values["sub_county"] = f"%{filters.get('sub_county')}%"
+    if filters.get("admin_2"):
+        conditions.append("FIND_IN_SET(%(admin_2)s, admin_2_names) > 0")
+        values["admin_2"] = f"{filters.get('admin_2')}"
+
+    if filters.get("admin_3"):
+        # conditions.append("p.sub_county LIKE %(sub_county)s")
+        # values["sub_county"] = f"%{filters.get('sub_county')}%"
+        conditions.append("FIND_IN_SET(%(admin_3)s, admin_3_names) > 0")
+        values["admin_3"] = f"{filters.get('admin_3')}"
 
     if filters.get("status"):
         conditions.append("status = %(status)s")
