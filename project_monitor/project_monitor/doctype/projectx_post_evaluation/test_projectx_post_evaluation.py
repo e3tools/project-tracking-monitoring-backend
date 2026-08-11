@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestProjectXFundingSourceType(FrappeTestCase):
+class TestProjectXPostEvaluation(FrappeTestCase):
 	pass

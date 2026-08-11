@@ -5,7 +5,7 @@
 from frappe.model.document import Document
 
 
-class ProjectXFundingSourceType(Document):
+class ProjectXPostEvaluation(Document):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 
@@ -14,7 +14,10 @@ class ProjectXFundingSourceType(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		funding_source_type: DF.Data
-		is_partner: DF.Check
+		evaluation_date: DF.Date
+		is_project_serving_its_intended_purpose: DF.Check
+		project: DF.Link
+		project_title: DF.ReadOnly | None
+		remarks: DF.SmallText | None
 	# end: auto-generated types
 	pass

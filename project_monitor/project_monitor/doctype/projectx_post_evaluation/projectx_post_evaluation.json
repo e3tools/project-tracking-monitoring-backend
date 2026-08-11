@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-10 11:41:49.029537",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "project",
+  "project_title",
+  "evaluation_date",
+  "column_break_hjdz",
+  "is_project_serving_its_intended_purpose",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "ProjectX",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_title",
+   "fieldtype": "Read Only",
+   "label": "Project Title"
+  },
+  {
+   "fieldname": "column_break_hjdz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "evaluation_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Evaluation Date",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.funded_by==\"Partner\"",
+   "fieldname": "is_project_serving_its_intended_purpose",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is the project still serving the intended purpose",
+   "mandatory_depends_on": "eval:doc.funded_by==\"Partner\"",
+   "read_only_depends_on": "eval:doc.funded_by !=\"Partner\""
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks on project relevance and impact, efficiency/effectiveness, and sustainability"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-08-10 11:43:48.153518",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Post Evaluation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
