@@ -1,0 +1,337 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"FTHPbqMh6E\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Project Monitor Overview</span>\",\"col\":12}},{\"id\":\"Em9OKg8V__\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"gIytQ_dF13\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project\",\"col\":3}},{\"id\":\"2LGr1aXr_u\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Progress Report\",\"col\":3}},{\"id\":\"H2P8xK1j-n\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Expenditure\",\"col\":3}},{\"id\":\"uL3I4Huhdd\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Disbursement\",\"col\":3}},{\"id\":\"ystRjNezF9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Feedback\",\"col\":3}},{\"id\":\"plZWB138xt\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Applications &amp; Operational Ledger</span>\",\"col\":12}},{\"id\":\"KeZPLIP_9w\",\"type\":\"card\",\"data\":{\"card_name\":\"Documents\",\"col\":4}},{\"id\":\"RiS-zJG0Qp\",\"type\":\"card\",\"data\":{\"card_name\":\"Financial Controls & Ledger\",\"col\":4}},{\"id\":\"yVu38n_opW\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports & Analytics\",\"col\":4}},{\"id\":\"1qzk3yg_9G\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup & Configuration\",\"col\":4}},{\"id\":\"SaLkqqA8ju\",\"type\":\"card\",\"data\":{\"card_name\":\"Administrative Documents\",\"col\":4}}]",
+ "creation": "2026-08-11 09:13:08.040538",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "project",
+ "idx": 0,
+ "indicator_color": "blue",
+ "is_hidden": 0,
+ "label": "Project Monitor",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Financial Controls & Ledger",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Disbursement",
+   "link_count": 0,
+   "link_to": "ProjectX Disbursement",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Expenditure",
+   "link_count": 0,
+   "link_to": "ProjectX Expenditure",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Documents",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ProjectX Master",
+   "link_count": 0,
+   "link_to": "ProjectX",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ProjectX Progress Report",
+   "link_count": 0,
+   "link_to": "ProjectX Progress Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Feedback",
+   "link_count": 0,
+   "link_to": "ProjectX Feedback",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Feedback Official Response",
+   "link_count": 0,
+   "link_to": "ProjectX Feedback Response",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Setup & Configuration",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Expenditure Category",
+   "link_count": 0,
+   "link_to": "Expenditure Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Funding Source",
+   "link_count": 0,
+   "link_to": "Funding Source Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Monitor Settings",
+   "link_count": 0,
+   "link_to": "Project Monitor Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sector",
+   "link_count": 0,
+   "link_to": "SectorX",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sub Sector",
+   "link_count": 0,
+   "link_to": "Sub SectorX",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Administrative Documents",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Admin Level 1",
+   "link_count": 0,
+   "link_to": "Admin 1",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Admin Level 2",
+   "link_count": 0,
+   "link_to": "Admin 2",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Admin Level 3",
+   "link_count": 0,
+   "link_to": "Admin 3",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Admin Level 4",
+   "link_count": 0,
+   "link_to": "Admin 4",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports & Analytics",
+   "link_count": 6,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Project Budget Variance And Expenditure Summary",
+   "link_count": 0,
+   "link_to": "Project Budget Variance And Expenditure Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Earned Value And Progress Report",
+   "link_count": 0,
+   "link_to": "Earned Value And Progress Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "ProjectX",
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Pending Liabilities And Interim Payment Certificate Ledger",
+   "link_count": 0,
+   "link_to": "Pending Liabilities And Interim Payment Certificate Ledger",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Ward And Sub-County Project Matrix",
+   "link_count": 0,
+   "link_to": "Ward And Sub County Project Matrix",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Project Health And Exception Report",
+   "link_count": 0,
+   "link_to": "Project Health And Exception Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Project Progress Report",
+   "link_count": 0,
+   "link_to": "Project Progress Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-08-11 17:32:55.890063",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "Project Monitor",
+ "number_cards": [],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Project",
+   "link_to": "ProjectX",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Project Progress Report",
+   "link_to": "ProjectX Progress Report",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Project Expenditure",
+   "link_to": "ProjectX Expenditure",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Project Disbursement",
+   "link_to": "ProjectX Disbursement",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Project Feedback",
+   "link_to": "ProjectX Feedback",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Project Monitor"
+}
