@@ -1,12 +1,24 @@
 // Copyright (c) 2025, Steve Nyaga and contributors
 // For license information, please see license.txt
 frappe.provide("project_monitor.projects");
+
+cur_frm.add_fetch("funded_by", "is_partner", "is_partner");
+
 frappe.ui.form.on("ProjectX", {
+  onload(frm) {},
   setup(frm) {
     frm.set_query("admin_level", "administrative_areas", function () {
       return {
         filters: {
           name: frm.doc.administrative_level,
+        },
+      };
+    });
+
+    frm.set_query("sub_sector", () => {
+      return {
+        filters: {
+          sector: frm.doc.sector || "Not Set",
         },
       };
     });
@@ -142,5 +154,5 @@ project_monitor.projects.set_total_funding = function (frm) {
       }
     }
   });
-  frm.set_value("total_percentage", total);
+  frm.set_value("total_funding_percentage", total);
 };

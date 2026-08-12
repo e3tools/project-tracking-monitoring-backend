@@ -1,0 +1,156 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-10 17:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_project_details",
+  "project",
+  "project_name",
+  "column_break_1",
+  "posting_date",
+  "certificate_number",
+  "section_financials",
+  "gross_certified_amount",
+  "retention_amount",
+  "column_break_2",
+  "net_payable_amount",
+  "section_details",
+  "remarks",
+  "supporting_document",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_project_details",
+   "fieldtype": "Section Break",
+   "label": "Project & Certificate Details"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "ProjectX",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Read Only",
+   "label": "Project Name"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "certificate_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "IPC / Certificate Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_financials",
+   "fieldtype": "Section Break",
+   "label": "Certified Amounts"
+  },
+  {
+   "fieldname": "gross_certified_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Gross Certified Work Amount",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "retention_amount",
+   "fieldtype": "Currency",
+   "label": "Retention Withheld Amount"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_payable_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Net Payable Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_details",
+   "fieldtype": "Section Break",
+   "label": "Supporting Information"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Engineer / QS Remarks"
+  },
+  {
+   "fieldname": "supporting_document",
+   "fieldtype": "Attach",
+   "label": "Signed Certificate Copy"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Project Payment Certificate",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-10 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Payment Certificate",
+ "naming_rule": "Expression",
+ "autoname": "IPC-.YYYY.-.#####",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Projects User",
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

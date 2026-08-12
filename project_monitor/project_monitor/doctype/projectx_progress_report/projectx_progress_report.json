@@ -1,0 +1,166 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-10 12:47:12.782811",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_project_details",
+  "project",
+  "project_name",
+  "column_break_1",
+  "inspection_date",
+  "inspected_by",
+  "inspector_name",
+  "section_progress_metrics",
+  "physical_progress_percent",
+  "work_status",
+  "column_break_2",
+  "issues_flagged",
+  "section_inspection_details",
+  "remarks",
+  "section_attachments",
+  "site_images",
+  "section_break_xjun",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_project_details",
+   "fieldtype": "Section Break",
+   "label": "Project Details"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "ProjectX",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Read Only",
+   "label": "Project Name"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "inspection_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Inspection Date",
+   "reqd": 1
+  },
+  {
+   "default": "__user",
+   "fieldname": "inspected_by",
+   "fieldtype": "Link",
+   "label": "Inspected By",
+   "options": "User"
+  },
+  {
+   "fieldname": "section_progress_metrics",
+   "fieldtype": "Section Break",
+   "label": "Progress & Status"
+  },
+  {
+   "fieldname": "physical_progress_percent",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Physical Progress (%)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "work_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Work Status",
+   "options": "On Schedule\nAhead of Schedule\nBehind Schedule\nStalled / Suspended",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "issues_flagged",
+   "fieldtype": "Check",
+   "label": "Critical Issues Flagged"
+  },
+  {
+   "fieldname": "section_inspection_details",
+   "fieldtype": "Section Break",
+   "label": "Inspection Remarks"
+  },
+  {
+   "fieldname": "section_attachments",
+   "fieldtype": "Section Break",
+   "label": "Site Attachments & Photos"
+  },
+  {
+   "fieldname": "site_images",
+   "fieldtype": "Attach Image",
+   "label": "Site Progress Photo"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "ProjectX Progress Report",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_xjun",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "__user",
+   "fieldname": "inspector_name",
+   "fieldtype": "Data",
+   "label": "Inspector Name"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text Editor",
+   "label": "Site Inspector Remarks",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-10 19:05:07.356766",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Progress Report",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

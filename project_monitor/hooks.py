@@ -27,6 +27,11 @@ app_license = "mit"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/project_monitor/css/project_monitor.css"
 # app_include_js = "/assets/project_monitor/js/project_monitor.js"
+app_include_js = [
+    "/assets/project_monitor/js/report_util.js",
+    "/assets/project_monitor/js/project_monitor_desk.js",
+]
+# app_include_css = "/assets/project_monitor/css/project_monitor.css"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/project_monitor/css/project_monitor.css"
@@ -145,6 +150,12 @@ after_install = "project_monitor.install.after_install"
 # 	}
 # }
 
+doc_events = {
+    "ProjectX Feedback": {
+        "after_insert": "project_monitor.project_monitor.doctype.projectx_feedback.projectx_feedback.send_feedback_alert",
+    }
+}
+
 # Scheduled Tasks
 # ---------------
 
@@ -165,6 +176,11 @@ after_install = "project_monitor.install.after_install"
 # 		"project_monitor.tasks.monthly"
 # 	],
 # }
+
+scheduler_events = {
+    "daily": ["project_monitor.tasks.check_project_health_alerts"],
+    # "monthly": ["project_monitor.tasks.generate_monthly_project_snapshots"],
+}
 
 # Testing
 # -------

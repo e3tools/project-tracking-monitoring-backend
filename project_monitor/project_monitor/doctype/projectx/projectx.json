@@ -2,42 +2,110 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:project_number",
- "creation": "2025-10-28 21:08:10.803408",
+ "creation": "2026-08-10 16:57:46.236422",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "basic_details_section",
   "project_number",
   "project_name",
-  "status",
-  "financial_year",
+  "project_lead_email",
   "department",
-  "implemented_by",
   "partner",
-  "contractor_name",
   "column_break_uxur",
-  "expected_start_date",
-  "expected_end_date",
-  "estimated_cost",
   "approval_number",
   "contract_period",
+  "contractor_name",
   "technical_rating",
-  "completion_level",
   "amount_paid",
-  "funding_details_section",
-  "source_of_funds",
-  "total_percentage",
+  "implementation_details_section",
+  "financial_year",
+  "sector",
+  "sub_sector",
+  "implemented_by",
+  "column_break_dzny",
+  "approval_date",
+  "expected_start_date",
+  "expected_end_date",
+  "actual_completion_date",
+  "post_evaluation_rating",
   "section_break_wndw",
   "project_scope",
+  "project_output",
+  "column_break_edyl",
+  "project_objective",
+  "implementation_tab",
+  "expenditure_section",
+  "total_disbursed_amount",
+  "percent_disbursed_amount",
+  "total_expenditure_amount",
+  "current_financial_progress",
+  "project_balance",
+  "column_break_hzzb",
+  "value_of_work_done",
+  "total_certified_amount",
+  "pending_bills_amount",
+  "current_physical_progress",
+  "last_progress_update_date",
+  "health_status",
   "tab_4_tab",
   "administrative_level",
   "administrative_areas",
   "project_location",
-  "admin_names",
+  "section_break_qyil",
   "latitude",
   "longitude",
-  "cover_image_tab",
-  "cover_image"
+  "column_break_rivq",
+  "admin_names",
+  "section_break_zkwq",
+  "admin_1_names",
+  "admin_2_names",
+  "column_break_usvm",
+  "admin_3_names",
+  "admin_4_names",
+  "financial_tab",
+  "financial__funding_details_section",
+  "estimated_cost",
+  "approved_budget",
+  "column_break_btwg",
+  "available_funds",
+  "funding_details_section",
+  "source_of_funds",
+  "total_funding_percentage",
+  "section_break_yett",
+  "county_government_cost_component",
+  "column_break_vajy",
+  "development_partner_cost_component",
+  "tab_5_tab",
+  "status_section",
+  "status",
+  "is_handed_over",
+  "column_break_vqxb",
+  "completion_level",
+  "is_evaluated",
+  "stalled_status_details_section",
+  "stalling_reasons",
+  "recommendation_for_the_stalled_project",
+  "column_break_patf",
+  "year_project_stalled",
+  "months_to_complete_stalled_project",
+  "amount_to_complete_stalled_project",
+  "risks_and_recommendation_section",
+  "is_project_in_budget",
+  "project_risks",
+  "compliance_tab",
+  "climate_and_disaster_risk_screening_section",
+  "has_been_screened_for_climate_and_disaster_risks",
+  "climate_disaster_risk_mitigation",
+  "climate_and_disaster_risk_reasons_for_not_screening",
+  "section_break_dmvk",
+  "has_been_screened_for_environment_social_health_gender_risks",
+  "environment_social_health_gender_risk_mitigation",
+  "environment_social_health_gender_risk_reasons_for_not_screening",
+  "section_break_vwcj",
+  "has_been_screened_for_technical_financial_economic_viability",
+  "technical_financial_economic_viability_mitigation",
+  "technical_financial_economic_viability_current_measurement"
  ],
  "fields": [
   {
@@ -93,23 +161,23 @@
   {
    "fieldname": "expected_end_date",
    "fieldtype": "Date",
-   "label": "Expected End Date"
+   "label": "Expected Completion Date"
   },
   {
    "fieldname": "estimated_cost",
    "fieldtype": "Currency",
-   "label": "Estimated Cost",
+   "label": "Estimated Project Cost",
    "non_negative": 1,
    "reqd": 1
   },
   {
    "fieldname": "section_break_wndw",
    "fieldtype": "Section Break",
-   "label": "Scope/Location"
+   "label": "Scope/Output/Objective"
   },
   {
    "fieldname": "project_scope",
-   "fieldtype": "Text",
+   "fieldtype": "Small Text",
    "label": "Project Scope"
   },
   {
@@ -163,7 +231,7 @@
   {
    "fieldname": "completion_level",
    "fieldtype": "Percent",
-   "label": "Completion Level",
+   "label": "Completion Level (%)",
    "read_only": 1
   },
   {
@@ -176,26 +244,19 @@
   {
    "fieldname": "funding_details_section",
    "fieldtype": "Section Break",
-   "label": "Funding Details"
+   "label": "Source Of Funds"
   },
   {
    "fieldname": "source_of_funds",
    "fieldtype": "Table",
-   "label": "Source of Funds",
+   "label": "Project Funding Sources",
    "options": "ProjectX Funding Source",
    "reqd": 1
   },
   {
-   "fieldname": "total_percentage",
-   "fieldtype": "Percent",
-   "label": "Total Percentage",
-   "read_only": 1
-  },
-  {
    "fieldname": "contractor_name",
    "fieldtype": "Data",
-   "label": "Contractor Name",
-   "reqd": 1
+   "label": "Contractor Name"
   },
   {
    "fieldname": "contract_period",
@@ -222,22 +283,416 @@
    "precision": "9"
   },
   {
-   "description": "This will be used as the cover image of the project when it is displayed to the public",
-   "fieldname": "cover_image",
-   "fieldtype": "Attach Image",
-   "label": "Cover Image"
+   "fieldname": "implementation_details_section",
+   "fieldtype": "Section Break",
+   "label": "Implementation Details"
   },
   {
-   "fieldname": "cover_image_tab",
+   "fieldname": "sector",
+   "fieldtype": "Link",
+   "label": "Sector",
+   "options": "SectorX",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sub_sector",
+   "fieldtype": "Link",
+   "label": "Sub Sector",
+   "options": "Sub SectorX"
+  },
+  {
+   "fieldname": "column_break_dzny",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "financial__funding_details_section",
+   "fieldtype": "Section Break",
+   "label": "Financial / Funding Details"
+  },
+  {
+   "fieldname": "column_break_btwg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "available_funds",
+   "fieldtype": "Currency",
+   "label": "Available Funds",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "county_government_cost_component",
+   "fieldtype": "Currency",
+   "label": "County Government Cost Component",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "development_partner_cost_component",
+   "fieldtype": "Currency",
+   "label": "Development Partner Cost Component",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "description": "Total Disbursed Amount / Approved Budget",
+   "fieldname": "percent_disbursed_amount",
+   "fieldtype": "Currency",
+   "label": "Percentage (%) Disbursed Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "financial_tab",
    "fieldtype": "Tab Break",
-   "label": "Cover Image"
+   "label": "Financial"
+  },
+  {
+   "fieldname": "expenditure_section",
+   "fieldtype": "Section Break",
+   "label": "Metrics"
+  },
+  {
+   "fieldname": "column_break_hzzb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Approved Project Cost - Disbursed Amount",
+   "fieldname": "project_balance",
+   "fieldtype": "Currency",
+   "label": "Project Balance",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "implementation_tab",
+   "fieldtype": "Tab Break",
+   "label": "Implementation"
+  },
+  {
+   "fieldname": "tab_5_tab",
+   "fieldtype": "Tab Break",
+   "label": "Project Status"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_handed_over",
+   "fieldtype": "Check",
+   "label": "Handing OVer Done?"
+  },
+  {
+   "fieldname": "column_break_vqxb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "stalled_status_details_section",
+   "fieldtype": "Section Break",
+   "label": "Stalled Status Details"
+  },
+  {
+   "fieldname": "stalling_reasons",
+   "fieldtype": "Small Text",
+   "label": "Reasons For Stalling"
+  },
+  {
+   "fieldname": "column_break_patf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "year_project_stalled",
+   "fieldtype": "Link",
+   "label": "Year Project Stalled",
+   "options": "Financial YearX"
+  },
+  {
+   "fieldname": "months_to_complete_stalled_project",
+   "fieldtype": "Int",
+   "label": "Months Required To Complete The Stalled Project"
+  },
+  {
+   "fieldname": "amount_to_complete_stalled_project",
+   "fieldtype": "Int",
+   "label": "Estimated Amount Required To Complete The Stalled Project"
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Status"
+  },
+  {
+   "fieldname": "recommendation_for_the_stalled_project",
+   "fieldtype": "Select",
+   "label": "Recommendation for the Stalled Project",
+   "options": "\nComplete\nCancel\nDefer"
+  },
+  {
+   "fieldname": "risks_and_recommendation_section",
+   "fieldtype": "Section Break",
+   "label": "Risks And Recommendation"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_project_in_budget",
+   "fieldtype": "Check",
+   "label": "Is the project still appearing in the budget or is it still receiving funds in the annual budgets"
+  },
+  {
+   "fieldname": "project_risks",
+   "fieldtype": "Small Text",
+   "label": "Identify the Risks Associated With The Project"
+  },
+  {
+   "fieldname": "compliance_tab",
+   "fieldtype": "Tab Break",
+   "label": "Compliance Screening"
+  },
+  {
+   "fieldname": "climate_and_disaster_risk_screening_section",
+   "fieldtype": "Section Break",
+   "label": "Climate And Disaster Risk Screening"
+  },
+  {
+   "fieldname": "climate_disaster_risk_mitigation",
+   "fieldtype": "Small Text",
+   "label": "If yes, what action has been taken to mitigate?"
+  },
+  {
+   "fieldname": "climate_and_disaster_risk_reasons_for_not_screening",
+   "fieldtype": "Small Text",
+   "label": "If not, give reasons and the immediate plans for conducting the screening"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_been_screened_for_climate_and_disaster_risks",
+   "fieldtype": "Check",
+   "label": "Has this project been screened for Climate and Disaster Risks?"
+  },
+  {
+   "fieldname": "section_break_dmvk",
+   "fieldtype": "Section Break",
+   "label": "Environmental, Social, Occupational Health, Safety and Gender Screening"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_been_screened_for_environment_social_health_gender_risks",
+   "fieldtype": "Check",
+   "label": "Has the project been screened for Environmental, Social, Occupational Health, Safety and Gender risks"
+  },
+  {
+   "fieldname": "environment_social_health_gender_risk_mitigation",
+   "fieldtype": "Small Text",
+   "label": "If yes, what action has been taken to mitigate?"
+  },
+  {
+   "fieldname": "environment_social_health_gender_risk_reasons_for_not_screening",
+   "fieldtype": "Small Text",
+   "label": "If not, give reasons and the immediate plans for conducting the screening"
+  },
+  {
+   "fieldname": "section_break_vwcj",
+   "fieldtype": "Section Break",
+   "label": "Technical, Financial, and Economic Viability Screening"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_been_screened_for_technical_financial_economic_viability",
+   "fieldtype": "Check",
+   "label": "Has the project been screened for Technical, Financial, and Economic Viability and a feasibility report been prepared?"
+  },
+  {
+   "fieldname": "technical_financial_economic_viability_mitigation",
+   "fieldtype": "Small Text",
+   "label": "If yes, what action has been taken to mitigate?"
+  },
+  {
+   "fieldname": "technical_financial_economic_viability_current_measurement",
+   "fieldtype": "Small Text",
+   "label": "If Not, what is being used to measure viability of the project? Indicate when the screening and feasibility study will be undertaken"
+  },
+  {
+   "fieldname": "approved_budget",
+   "fieldtype": "Currency",
+   "label": "Approved Project Budget",
+   "non_negative": 1,
+   "precision": "2",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_disbursed_amount",
+   "fieldtype": "Currency",
+   "label": "Total Disbursed Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "project_output",
+   "fieldtype": "Small Text",
+   "label": "Project Output"
+  },
+  {
+   "fieldname": "column_break_edyl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "project_objective",
+   "fieldtype": "Small Text",
+   "label": "Project Objective"
+  },
+  {
+   "fieldname": "total_funding_percentage",
+   "fieldtype": "Percent",
+   "label": "Total Funding Percentage",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_yett",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_vajy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Monetary value of physical work completed",
+   "fieldname": "value_of_work_done",
+   "fieldtype": "Currency",
+   "label": "Value of Work Done",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_expenditure_amount",
+   "fieldtype": "Float",
+   "label": "Total Expenditure Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "description": "Commitment not paid but work has been done",
+   "fieldname": "pending_bills_amount",
+   "fieldtype": "Currency",
+   "label": "Pending Bills Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_certified_amount",
+   "fieldtype": "Currency",
+   "label": "Total Certified Amount",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "description": "Total Expenditure / Approved Budget",
+   "fieldname": "current_financial_progress",
+   "fieldtype": "Percent",
+   "label": "Current Financial Progress",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_physical_progress",
+   "fieldtype": "Percent",
+   "label": "Current Physical Progress",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "health_status",
+   "fieldtype": "Select",
+   "label": "Health Status",
+   "options": "On Track\nDelayed\nBudget Exceeded\nStalled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_progress_update_date",
+   "fieldtype": "Date",
+   "label": "Last Progress Update Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qyil",
+   "fieldtype": "Section Break",
+   "label": "Location"
+  },
+  {
+   "fieldname": "column_break_rivq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_zkwq",
+   "fieldtype": "Section Break",
+   "label": "Admin Names"
+  },
+  {
+   "fieldname": "admin_1_names",
+   "fieldtype": "Data",
+   "label": "Admin 1 Names",
+   "length": 255,
+   "read_only": 1
+  },
+  {
+   "fieldname": "admin_2_names",
+   "fieldtype": "Data",
+   "label": "Admin 2 Names",
+   "length": 255,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_usvm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "admin_3_names",
+   "fieldtype": "Data",
+   "label": "Admin 3 Names",
+   "length": 255,
+   "read_only": 1
+  },
+  {
+   "fieldname": "admin_4_names",
+   "fieldtype": "Data",
+   "label": "Admin 4 Names",
+   "length": 255,
+   "read_only": 1
+  },
+  {
+   "fieldname": "actual_completion_date",
+   "fieldtype": "Date",
+   "label": "Actual Completion Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "post_evaluation_rating",
+   "fieldtype": "Data",
+   "label": "Post Evaluation Rating",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_evaluated",
+   "fieldtype": "Check",
+   "label": "Has been evaluated?",
+   "read_only": 1
+  },
+  {
+   "fieldname": "project_lead_email",
+   "fieldtype": "Data",
+   "label": "Project Lead Email"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2026-07-24 10:08:10.264333",
+ "modified": "2026-08-12 08:07:24.258625",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "ProjectX",
@@ -268,10 +723,10 @@
   }
  ],
  "row_format": "Dynamic",
- "rows_threshold_for_grid_search": 20,
  "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "project_name"
+ "title_field": "project_name",
+ "track_changes": 1
 }

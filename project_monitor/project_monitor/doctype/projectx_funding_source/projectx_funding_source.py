@@ -14,7 +14,8 @@ class ProjectXFundingSource(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		funded_by: DF.Literal["", "County Government", "Partner", "Local Organization"]
+		funded_by: DF.Link
+		is_partner: DF.Check
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data

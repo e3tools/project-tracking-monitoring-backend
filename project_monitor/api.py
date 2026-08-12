@@ -86,7 +86,6 @@ def get_doc_list(
 
     # if isinstance(filters, str):
     #     filters = json.loads(filters)
-    print("Doctype:", doctype)
 
     fields = json.loads(fields) if fields else ["name"]
     filters = json.loads(filters) if filters else {}

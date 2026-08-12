@@ -1,0 +1,260 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "PPE-.YYYY.-.#####",
+ "creation": "2026-08-11 18:33:51.764638",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_project_info",
+  "project",
+  "project_name",
+  "department",
+  "column_break_1",
+  "evaluation_date",
+  "evaluator_name",
+  "section_performance_summary",
+  "approved_budget",
+  "final_expenditure",
+  "cost_variance",
+  "column_break_2",
+  "planned_end_date",
+  "actual_completion_date",
+  "schedule_variance_days",
+  "section_evaluation_scores",
+  "quality_rating",
+  "budget_rating",
+  "community_impact_rating",
+  "schedule_rating",
+  "overall_rating",
+  "column_break_3",
+  "is_project_serving_its_intended_purpose",
+  "remarks",
+  "section_qualitative_review",
+  "objectives_achieved",
+  "key_challenges",
+  "amended_from",
+  "column_break_aged",
+  "lessons_learned",
+  "sustainability_plan"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_project_info",
+   "fieldtype": "Section Break",
+   "label": "Project & Inspector Details"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "ProjectX",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Read Only",
+   "label": "Project Name"
+  },
+  {
+   "fetch_from": "project.department",
+   "fieldname": "department",
+   "fieldtype": "Read Only",
+   "label": "Department"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "evaluation_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Evaluation Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "evaluator_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Evaluator / Auditor Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_performance_summary",
+   "fieldtype": "Section Break",
+   "label": "Baseline vs Actual Performance"
+  },
+  {
+   "fieldname": "approved_budget",
+   "fieldtype": "Currency",
+   "label": "Approved Budget",
+   "read_only": 1
+  },
+  {
+   "fieldname": "final_expenditure",
+   "fieldtype": "Currency",
+   "label": "Final Expenditure",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cost_variance",
+   "fieldtype": "Currency",
+   "label": "Cost Savings / Overrun",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "planned_end_date",
+   "fieldtype": "Date",
+   "label": "Planned Completion Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "actual_completion_date",
+   "fieldtype": "Date",
+   "label": "Actual Completion Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "schedule_variance_days",
+   "fieldtype": "Int",
+   "label": "Schedule Delay (Days)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_evaluation_scores",
+   "fieldtype": "Section Break",
+   "label": "Assessment Scores"
+  },
+  {
+   "default": "3 - Satisfactory",
+   "fieldname": "quality_rating",
+   "fieldtype": "Select",
+   "label": "Work Quality Rating",
+   "options": "5 - Outstanding\n4 - Exceeds Expectations\n3 - Satisfactory\n2 - Needs Improvement\n1 - Unsatisfactory",
+   "reqd": 1
+  },
+  {
+   "default": "3 - Satisfactory",
+   "fieldname": "budget_rating",
+   "fieldtype": "Select",
+   "label": "Financial Management Rating",
+   "options": "5 - Outstanding\n4 - Exceeds Expectations\n3 - Satisfactory\n2 - Needs Improvement\n1 - Unsatisfactory",
+   "reqd": 1
+  },
+  {
+   "default": "3 - Satisfactory",
+   "fieldname": "schedule_rating",
+   "fieldtype": "Select",
+   "label": "Schedule Adherence Rating",
+   "options": "5 - Outstanding\n4 - Exceeds Expectations\n3 - Satisfactory\n2 - Needs Improvement\n1 - Unsatisfactory",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "3 - Satisfactory",
+   "fieldname": "community_impact_rating",
+   "fieldtype": "Select",
+   "label": "Community Impact Rating",
+   "options": "5 - Outstanding\n4 - Exceeds Expectations\n3 - Satisfactory\n2 - Needs Improvement\n1 - Unsatisfactory",
+   "reqd": 1
+  },
+  {
+   "default": "Successful",
+   "fieldname": "overall_rating",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Overall Outcome Rating",
+   "options": "Highly Successful\nSuccessful\nPartially Successful\nUnsuccessful",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_qualitative_review",
+   "fieldtype": "Section Break",
+   "label": "Qualitative Review & Lessons Learned"
+  },
+  {
+   "fieldname": "objectives_achieved",
+   "fieldtype": "Small Text",
+   "label": "Key Deliverables & Objectives Achieved"
+  },
+  {
+   "fieldname": "key_challenges",
+   "fieldtype": "Small Text",
+   "label": "Key Challenges Encountered"
+  },
+  {
+   "fieldname": "lessons_learned",
+   "fieldtype": "Small Text",
+   "label": "Lessons Learned & Recommendations for Future Projects"
+  },
+  {
+   "fieldname": "sustainability_plan",
+   "fieldtype": "Small Text",
+   "label": "Operations & Maintenance / Sustainability Plan"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "ProjectX Post Evaluation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_project_serving_its_intended_purpose",
+   "fieldtype": "Check",
+   "label": "Is the project still serving the intended purpose"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "column_break_aged",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-11 18:40:32.319969",
+ "modified_by": "Administrator",
+ "module": "Project Monitor",
+ "name": "ProjectX Post Evaluation",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

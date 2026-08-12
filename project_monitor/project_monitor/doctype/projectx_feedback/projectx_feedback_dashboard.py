@@ -3,7 +3,7 @@ from frappe import _
 
 def get_data():
     return {
-        "fieldname": "feedback",
+        "fieldname": "project_feedback",
         # "non_standard_fieldnames": {
         #     "Item": "default_bom",
         #     "Purchase Order": "bom",

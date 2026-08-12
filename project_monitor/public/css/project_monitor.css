@@ -1,0 +1,53 @@
+/* ==========================================================================
+   Workspace Styles (Scoped strictly away from active editing states)
+   ========================================================================== */
+
+body:not(.editing) .workspace-page .widget-box,
+body:not(.editing) .workspace-page .widget {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+body:not(.editing) .workspace-page .widget-box:hover,
+body:not(.editing) .workspace-page .widget:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body:not(.editing) .workspace-page .widget.number-card-widget {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+/* ==========================================================================
+   Dropdown & Awesomplete Flicker Fix
+   ========================================================================== */
+
+/* 1. Freeze position recalculations on dropdown menus & awesomplete popups */
+.dropdown-menu,
+.awesomplete > ul,
+.ce-popover,
+.popover {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+}
+
+/* 2. Prevent input height shifting that triggers Awesomplete re-renders */
+.awesomplete > input,
+.form-control,
+.form-control:focus {
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* 3. Force active dropdown menus to stay rendered in a fixed z-index layer */
+.awesomplete > ul[open],
+.awesomplete > ul:not([hidden]),
+.dropdown-menu.show {
+    display: block !important;
+    z-index: 1090 !important;
+}
