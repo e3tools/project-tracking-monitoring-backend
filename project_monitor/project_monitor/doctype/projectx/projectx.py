@@ -17,14 +17,10 @@ class ProjectX(Document):
 
     if TYPE_CHECKING:
         from frappe.types import DF
-        from project_monitor.project_monitor.doctype.projectx_funding_source.projectx_funding_source import (
-            ProjectXFundingSource,
-        )
-        from project_monitor.project_monitor.doctype.projectx_location_item.projectx_location_item import (
-            ProjectXLocationItem,
-        )
+        from project_monitor.project_monitor.doctype.projectx_funding_source.projectx_funding_source import ProjectXFundingSource
+        from project_monitor.project_monitor.doctype.projectx_location_item.projectx_location_item import ProjectXLocationItem
 
-        actual_end_date: DF.Date | None
+        actual_completion_date: DF.Date | None
         admin_1_names: DF.Data | None
         admin_2_names: DF.Data | None
         admin_3_names: DF.Data | None
@@ -49,9 +45,7 @@ class ProjectX(Document):
         department: DF.Link | None
         development_partner_cost_component: DF.Currency
         environment_social_health_gender_risk_mitigation: DF.SmallText | None
-        environment_social_health_gender_risk_reasons_for_not_screening: (
-            DF.SmallText | None
-        )
+        environment_social_health_gender_risk_reasons_for_not_screening: DF.SmallText | None
         estimated_cost: DF.Currency
         expected_end_date: DF.Date | None
         expected_start_date: DF.Date | None
@@ -60,9 +54,8 @@ class ProjectX(Document):
         has_been_screened_for_environment_social_health_gender_risks: DF.Check
         has_been_screened_for_technical_financial_economic_viability: DF.Check
         health_status: DF.Literal["On Track", "Delayed", "Budget Exceeded", "Stalled"]
-        implemented_by: DF.Literal[
-            "", "County Government", "Partner", "Local Organization"
-        ]
+        implemented_by: DF.Literal["", "County Government", "Partner", "Local Organization"]
+        is_evaluated: DF.Check
         is_handed_over: DF.Check
         is_project_in_budget: DF.Check
         last_progress_update_date: DF.Date | None
@@ -72,6 +65,7 @@ class ProjectX(Document):
         partner: DF.Link | None
         pending_bills_amount: DF.Currency
         percent_disbursed_amount: DF.Currency
+        post_evaluation_rating: DF.Data | None
         project_balance: DF.Currency
         project_name: DF.Data
         project_number: DF.Data
@@ -79,9 +73,7 @@ class ProjectX(Document):
         project_output: DF.SmallText | None
         project_risks: DF.SmallText | None
         project_scope: DF.SmallText | None
-        recommendation_for_the_stalled_project: DF.Literal[
-            "", "Complete", "Cancel", "Defer"
-        ]
+        recommendation_for_the_stalled_project: DF.Literal["", "Complete", "Cancel", "Defer"]
         sector: DF.Link
         source_of_funds: DF.Table[ProjectXFundingSource]
         stalling_reasons: DF.SmallText | None
@@ -92,7 +84,7 @@ class ProjectX(Document):
         technical_rating: DF.Data | None
         total_certified_amount: DF.Currency
         total_disbursed_amount: DF.Currency
-        total_expenditure_amount: DF.Currency
+        total_expenditure_amount: DF.Float
         total_funding_percentage: DF.Percent
         value_of_work_done: DF.Currency
         year_project_stalled: DF.Link | None
