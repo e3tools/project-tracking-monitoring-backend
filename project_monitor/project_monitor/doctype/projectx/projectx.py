@@ -38,7 +38,7 @@ class ProjectX(Document):
         climate_disaster_risk_mitigation: DF.SmallText | None
         completion_level: DF.Percent
         contract_period: DF.Int
-        contractor_name: DF.Data
+        contractor_name: DF.Data | None
         county_government_cost_component: DF.Currency
         current_financial_progress: DF.Percent
         current_physical_progress: DF.Percent
@@ -67,6 +67,7 @@ class ProjectX(Document):
         percent_disbursed_amount: DF.Currency
         post_evaluation_rating: DF.Data | None
         project_balance: DF.Currency
+        project_lead_email: DF.Data | None
         project_name: DF.Data
         project_number: DF.Data
         project_objective: DF.SmallText | None
