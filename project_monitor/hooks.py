@@ -28,6 +28,7 @@ app_license = "mit"
 # app_include_css = "/assets/project_monitor/css/project_monitor.css"
 # app_include_js = "/assets/project_monitor/js/project_monitor.js"
 app_include_js = ["/assets/project_monitor/js/report_util.js"]
+app_include_css = "/assets/project_monitor/css/project_monitor.css"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/project_monitor/css/project_monitor.css"
