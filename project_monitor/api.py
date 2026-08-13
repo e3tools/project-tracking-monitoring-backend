@@ -90,11 +90,31 @@ def get_doc_list(
     fields = json.loads(fields) if fields else ["name"]
     filters = json.loads(filters) if filters else {}
 
+    if doctype == "ProjectX Progress Report":
+        # only show public ones
+        filters.append(["is_public", "=", True])
+        filters.append(["docstatus", "=", 1])
+
+    meta = frappe.get_meta(doctype)
+    if meta.is_submittable:
+        # retrieve only submitted records
+        filters.append(["docstatus", "=", 1])
+
     # frappe.get_all will not check for permissions as opposed to frappe.get_list
-    return frappe.get_all(
+    docs = frappe.get_all(
         doctype,
         fields=fields or ["name"],
         filters=filters or {},
         order_by=order_by,
         limit=int(limit),
     )
+
+    if doctype == "ProjectX":
+        # set default cover
+        default_image = frappe.db.get_singles_value(
+            "Project Monitor Settings", "default_cover_image"
+        )
+        for d in docs:
+            d.cover_image = default_image if not d.cover_image else d.cover_image
+
+    return docs
