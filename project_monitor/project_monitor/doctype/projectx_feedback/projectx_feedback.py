@@ -14,32 +14,20 @@ class ProjectXFeedback(Document):
     from typing import TYPE_CHECKING
 
     if TYPE_CHECKING:
+        from frappe.model.document import Document
         from frappe.types import DF
-        from project_monitor.project_monitor.doctype.projectx_feedback_attachment_item.projectx_feedback_attachment_item import (
-            ProjectXFeedbackAttachmentItem,
-        )
 
-        attachments: DF.Table[ProjectXFeedbackAttachmentItem]
+        attachments: DF.Table[Document]
         category: DF.Literal["", "Complaint", "Suggestion", "Inquiry", "Appreciation"]
-        description: DF.SmallText
+        description: DF.Text
         email: DF.Data | None
         full_name: DF.Data | None
         is_anonymous: DF.Check
         is_public: DF.Check
-        naming_series: DF.Data | None
         phone_number: DF.Data | None
-        project: DF.Link
+        project: DF.Link | None
         project_name: DF.ReadOnly | None
-        status: DF.Literal[
-            "",
-            "Submitted",
-            "Under Review",
-            "Action In Progress",
-            "Awaiting Information",
-            "Resolved",
-            "Closed",
-            "Not Actionable",
-        ]
+        status: DF.Literal["", "Submitted", "Under Review", "Action In Progress", "Awaiting Information", "Resolved", "Closed", "Not Actionable"]
         subject: DF.Data
     # end: auto-generated types
     pass

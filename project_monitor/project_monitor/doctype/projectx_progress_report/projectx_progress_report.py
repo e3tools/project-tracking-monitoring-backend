@@ -24,17 +24,31 @@ class ProjectXProgressReport(Document):
         inspected_by: DF.Link | None
         inspection_date: DF.Date
         inspector_name: DF.Data | None
+        is_public: DF.Check
         issues_flagged: DF.Check
         physical_progress_percent: DF.Percent
         project: DF.Link
         project_name: DF.ReadOnly | None
-        remarks: DF.TextEditor
+        remarks: DF.SmallText
         site_images: DF.AttachImage | None
-        work_status: DF.Literal[
-            "On Schedule", "Ahead of Schedule", "Behind Schedule", "Stalled / Suspended"
-        ]
+        work_status: DF.Literal["On Schedule", "Ahead of Schedule", "Behind Schedule", "Stalled / Suspended"]
     # end: auto-generated types
     pass
+
+    def has_permission(self, permtype="read", *, debug=False, user=None):
+        """
+        Ensure someone cannot directly view an internal report by guessing its URL
+        """
+        if not user:
+            user = frappe.session.user
+
+        # If user is Guest or external, allow access if is_public is checked
+        if user == "Guest" or "Projects Portal User" in frappe.get_roles(user):
+            if permtype == "read":
+                return self.is_public == 1
+            return False
+
+        return True
 
     def validate(self):
         if self.inspected_by:
@@ -103,3 +117,18 @@ class ProjectXProgressReport(Document):
         project_doc.save(ignore_permissions=True)
 
         update_earned_value_and_pending_bills(self.project)
+
+
+def get_permission_query_conditions(user=None):
+    if not user:
+        user = frappe.session.user
+
+    # Internal users see all records
+    if user != "Guest" and "System Manager" in frappe.get_roles(user):
+        return
+
+    # Guests and external public users can only see records marked as public
+    if user == "Guest" or "Projects Portal User" in frappe.get_roles(user):
+        return "`tabProjectX Progress Report`.is_public = 1"
+
+    return ""

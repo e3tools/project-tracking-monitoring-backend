@@ -40,6 +40,7 @@ class ProjectX(Document):
         contract_period: DF.Int
         contractor_name: DF.Data | None
         county_government_cost_component: DF.Currency
+        cover_image: DF.AttachImage | None
         current_financial_progress: DF.Percent
         current_physical_progress: DF.Percent
         department: DF.Link | None

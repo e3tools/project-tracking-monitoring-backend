@@ -18,6 +18,7 @@ class ProjectMonitorSettings(Document):
 		admin_2_display_name: DF.Data | None
 		admin_3_display_name: DF.Data | None
 		admin_4_display_name: DF.Data | None
+		default_cover_image: DF.AttachImage
 		pending_bill_calculation_method: DF.Literal["Payment Certificate (IPC) Ledger", "Earned Value Progress Estimate"]
 	# end: auto-generated types
 	pass

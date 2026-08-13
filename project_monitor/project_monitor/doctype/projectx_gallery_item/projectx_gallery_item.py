@@ -14,11 +14,12 @@ class ProjectXGalleryItem(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		attach_file: DF.Attach
-		caption: DF.Data | None
+		attach_file: DF.Attach | None
+		description: DF.SmallText | None
+		is_cover_image: DF.Check
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data
-		use_as_the_cover_image: DF.Check
+		short_title: DF.Data
 	# end: auto-generated types
 	pass

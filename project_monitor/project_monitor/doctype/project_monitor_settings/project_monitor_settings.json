@@ -10,7 +10,9 @@
   "admin_1_display_name",
   "admin_2_display_name",
   "admin_3_display_name",
-  "admin_4_display_name"
+  "admin_4_display_name",
+  "column_break_mfhg",
+  "default_cover_image"
  ],
  "fields": [
   {
@@ -50,13 +52,23 @@
    "fieldname": "admin_4_display_name",
    "fieldtype": "Data",
    "label": "Admin 4 Display Name"
+  },
+  {
+   "fieldname": "column_break_mfhg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "default_cover_image",
+   "fieldtype": "Attach Image",
+   "label": "Default Project Cover Image",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-08-10 19:14:49.647304",
+ "modified": "2026-08-13 17:42:14.411596",
  "modified_by": "Administrator",
  "module": "Project Monitor",
  "name": "Project Monitor Settings",
