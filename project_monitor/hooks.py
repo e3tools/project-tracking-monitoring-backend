@@ -125,6 +125,12 @@ after_install = "project_monitor.install.after_install"
 # permission_query_conditions = {
 # 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
 # }
+
+permission_query_conditions = {
+    # guest/public users only see reports where is_public = 1, while internal staff see all reports.
+    "ProjectX Progress Report": "project_monitor.project_monitor.doctype.projectx_progress_report.projectx_progress_report.get_permission_query_conditions"
+}
+
 #
 # has_permission = {
 # 	"Event": "frappe.desk.doctype.event.event.has_permission",
