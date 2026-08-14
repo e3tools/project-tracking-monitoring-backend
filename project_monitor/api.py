@@ -117,4 +117,11 @@ def get_doc_list(
         for d in docs:
             d.cover_image = default_image if not d.cover_image else d.cover_image
 
+    if doctype == "ProjectX Feedback":
+        personal_fields = ["full_name", "email", "phone_number"]
+        # remove these fields for purposes of data protection
+        for d in docs:
+            for f in personal_fields:
+                del d[f]
+
     return docs
