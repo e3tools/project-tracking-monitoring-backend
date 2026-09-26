@@ -18,7 +18,7 @@ frappe.ui.form.on("ProjectX", {
     frm.set_query("sub_sector", () => {
       return {
         filters: {
-          sector: frm.doc.sector || "Not Set",
+          sector: frm.doc.sector ?? "Not Set",
         },
       };
     });
