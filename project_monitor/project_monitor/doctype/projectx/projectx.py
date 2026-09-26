@@ -97,6 +97,7 @@ class ProjectX(Document):
         self.validate_funding_sources()
         self.validate_start_dates()
         self.validate_location()
+        self.validate_sector()
         self.set_admin_names()
 
     def set_admin_names(self):
@@ -279,6 +280,18 @@ class ProjectX(Document):
             frappe.throw(
                 _("Exactly one geometry is allowed (one Point or one Polygon).")
             )
+
+    def validate_sector(self):
+        if self.sub_sector and self.sector:
+            sector = frappe.db.get_value("Sub SectorX", self.sub_sector, ["sector"])
+            if sector != self.sector:
+                frappe.throw(
+                    _(
+                        "Sub Sector {0} does not belong to {1} sector".format(
+                            self.sub_sector, self.sector
+                        )
+                    )
+                )
 
     @frappe.whitelist(allow_guest=True)
     def get_vector(self, doctype, docname):
